@@ -1,0 +1,175 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+# Import Libraries
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+```
+
+# Import Data Files
+
+Source: https://www.kaggle.com/jessemostipak/volcano-eruptions
+
+```{r}
+raw_eruptions <- read_csv(here("data", "raw_data", "eruptions.csv"))
+raw_events <- read_csv(here("data", "raw_data", "events.csv"))
+raw_sulfur <- read_csv(here("data", "raw_data", "sulfur.csv"))
+raw_tree_rings <- read_csv(here("data", "raw_data", "tree_rings.csv"))
+raw_volcano <- read_csv(here("data", "raw_data", "volcano.csv"))
+```
+
+## Eruption Dataset
+
+```{r}
+summary(raw_eruptions)
+```
+
+```{r}
+colnames(raw_eruptions)
+```
+
+## Clean Eruption Dataset
+
+```{r}
+raw_eruptions %>% 
+  group_by(start_month) %>% 
+  summarise(count = n())
+```
+
+```{r}
+sum(is.na(raw_eruptions$area_of_activity))
+```
+
+```{r}
+# Remove the unnecessary date fields
+eruptions = subset(raw_eruptions, select = c("volcano_number", "volcano_name", "eruption_number",
+                       "eruption_category","vei",
+                       "start_year", "evidence_method_dating", "latitude",
+                       "longitude"))
+```
+
+```{r}
+# drop the NA
+eruptions <- eruptions %>% 
+  drop_na(start_year)
+```
+
+```{r}
+eruptions %>% 
+  group_by(start_year) %>% 
+  summarise(count = n())
+```
+
+I am going to leave the start year as a numeric value for now as the negative values can not be read by lubridate.
+
+## Events Dataset
+
+```{r}
+summary(raw_events)
+```
+
+```{r}
+colnames(raw_events)
+```
+
+```{r}
+# Remove the unnecessary event date fields
+events = subset(raw_events, select = c("volcano_number", "volcano_name", "eruption_number",
+                                       "eruption_start_year", "event_number", "event_type",
+                                       "event_remarks"))
+```
+
+```{r}
+sum(is.na(events$event_remarks))
+```
+
+```{r}
+# Create a subset of the events with remarks
+commented_events <- events %>% 
+  filter(!is.na(events$event_remarks))
+```
+
+```{r}
+# Remove the unnecessary event date fields
+events = subset(raw_events, select = c("volcano_number", "volcano_name", 
+                                       "eruption_number", "eruption_start_year",
+                                       "event_number", "event_type"))
+```
+
+## Sulfur Dataset
+
+```{r}
+summary(raw_sulfur)
+```
+
+```{r}
+colnames(raw_sulfur)
+```
+
+```{r}
+# drop the NA
+sulfur <- raw_sulfur %>% 
+  drop_na(year)
+```
+
+## Tree Ring Dataset
+
+```{r}
+summary(raw_tree_rings)
+```
+
+```{r}
+colnames(raw_tree_rings)
+```
+
+```{r}
+# drop the NA
+tree_rings <- raw_tree_rings %>% 
+  drop_na(year)
+```
+
+## Volcano Dataset
+
+```{r}
+summary(raw_volcano)
+```
+
+```{r}
+colnames(raw_volcano)
+```
+
+```{r}
+# Split the tectonic settings column into zone and crust
+raw_volcano[c('tectonic_zone', 'tectonic_crust')] <- 
+  str_split_fixed(raw_volcano$tectonic_settings, ' / ', 2)
+```
+
+```{r}
+colnames(raw_volcano)
+```
+
+```{r}
+# Remove the unnecessary event date fields
+volcanoes = subset(raw_volcano, select = c(1:10, 12:13, 23:28))
+```
+
+# Export clean datasets
+
+```{r}
+# Export the clean files
+write_csv(eruptions, here("data", "clean_data", "eruptions.csv"))
+write_csv(events, here("data", "clean_data", "events.csv"))
+write_csv(commented_events, here("data", "clean_data", "commented_events.csv"))
+write_csv(sulfur, here("data", "clean_data", "sulfur.csv"))
+write_csv(tree_rings, here("data", "clean_data", "tree_rings.csv"))
+write_csv(volcanoes, here("data", "clean_data", "volcanoes.csv"))
+```
+
+
+
+
