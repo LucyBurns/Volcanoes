@@ -17,13 +17,27 @@ output:
 
 # Questions
 
-We all know what a volcano is but how doe we really understand about them? Using datasets originally created as part of Tidy Tuesday (A weekly data project aimed at the R ecosystem) I want to learn more about them focusing on three questions:
+We all know what a volcano is but how do we really understand about them? Using datasets originally created as part of Tidy Tuesday (A weekly data project aimed at the R ecosystem) I want to learn more about them focusing on three questions:
 
-1.  Where are volcanic eruptions likely to occur
+1.  Where are volcanic eruptions likely to occur?
 
-2.  Which volcanoes are likely to cause the most damage if they blow?
+    -   tectonic plates
 
-3.  Why do people live near volcanoes when they are so lethal?
+    -   elevation
+
+2.  Is there a relationship between the size of the population living near to a volcano and the nature of that volcano?
+
+    -   for the highest populated volcanic areas...
+
+    -   how intense are the volcanoes
+
+    -   how often do they blow
+
+    -   how recent
+
+3.  Which type of volcanoes have the highest VEI?
+
+    -   What are the characteristics
 
 # Method
 
@@ -43,20 +57,36 @@ We all know what a volcano is but how doe we really understand about them? Using
 
 # Project Plan
 
-| Day       | Activity                     | Notes                                               |
-|-----------|------------------------------|-----------------------------------------------------|
-| Tuesday   | Produce Project Plan         |                                                     |
-|           | Get Sign Off                 |                                                     |
-|           | Import Datasets              |                                                     |
-|           | Clean Datasets               |                                                     |
-|           | Begin EDA                    |                                                     |
-| Wednesday | Continue EDA                 |                                                     |
-|           | Mapping                      |                                                     |
-| Thursday  | Hypothesis Testing           |                                                     |
-| Friday    | Hypothesis Testing           |                                                     |
-|           | Continue Mapping as required |                                                     |
-| Weekend   | Consolidate Findings         |                                                     |
-| Monday    | Finalise Analysis            |                                                     |
-| Tuesday   | Complete Report/README       |                                                     |
-|           | Write Presentation           |                                                     |
-| Wednesday | Presentation day             | Try to ignore the fact it is also my 50th Birthday! |
++-------------+------------------------------+------------------------------------+
+| Day         | Activity                     | Notes                              |
++=============+==============================+====================================+
+| Tuesday     | Produce Project Plan         |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Get Sign Off                 |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Import Datasets              |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Clean Datasets               |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Begin EDA                    |                                    |
++-------------+------------------------------+------------------------------------+
+| Wednesday   | Continue EDA                 |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Mapping                      |                                    |
++-------------+------------------------------+------------------------------------+
+| Thursday    | Hypothesis Testing           |                                    |
++-------------+------------------------------+------------------------------------+
+| Friday      | Hypothesis Testing           |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Continue Mapping as required |                                    |
++-------------+------------------------------+------------------------------------+
+| Weekend     | Consolidate Findings         |                                    |
++-------------+------------------------------+------------------------------------+
+| Monday      | Finalise Analysis            |                                    |
++-------------+------------------------------+------------------------------------+
+| Tuesday     | Complete Report/README       |                                    |
++-------------+------------------------------+------------------------------------+
+|             | Write Presentation           |                                    |
++-------------+------------------------------+------------------------------------+
+| Wednesday   | Presentation day             |                                    |
++-------------+------------------------------+------------------------------------+

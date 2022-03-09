@@ -57,9 +57,9 @@ vei_0_7 <- eruptions_volc %>% drop_na(vei)
 ```{r}
 # Looking at those before the year 0
 vei_0_7 %>% 
-  filter(start_year<0) %>% 
+  #filter(start_year<0) %>% 
 ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
-    geom_point(size=6) 
+    geom_point(size=2) 
 ```
 
 
