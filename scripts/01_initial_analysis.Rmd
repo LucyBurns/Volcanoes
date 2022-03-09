@@ -12,6 +12,7 @@ library(here)
 library(hrbrthemes)
 library(gapminder)
 library(viridis)
+library(RColorBrewer)
 ```
 
 # Import Datasets
@@ -35,19 +36,29 @@ eruptions %>%
   summarise(count = n())
 ```
 
-
-
 ```{r}
 # Add the volcano detail onto the eruption database
 eruptions_volc <- left_join(eruptions, volcanoes, by = "volcano_name")
 ```
 
 ```{r}
-eruptions_volc %>% 
-  group_by(vei) %>% 
-  summarise(count = n())
+# Remove duplicate columns
+eruptions_volc = 
+  select(eruptions_volc, -volcano_number.y, -latitude.y, -longitude.y)
 ```
 
+```{r}
+# Rename columns
+eruptions_volc = 
+rename(eruptions_volc, volcano_number = volcano_number.x)
+
+eruptions_volc = 
+rename(eruptions_volc, latitude = latitude.x)
+
+eruptions_volc = 
+rename(eruptions_volc, longitude = longitude.x)
+
+```
 
 ```{r}
 # Create dataset with just recorded vei values
@@ -55,13 +66,59 @@ vei_0_7 <- eruptions_volc %>% drop_na(vei)
 ```
 
 ```{r}
-# Looking at those before the year 0
-vei_0_7 %>% 
-  #filter(start_year<0) %>% 
-ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
-    geom_point(size=2) 
+# Count number of eruptions by VEI
+count_vei <- vei_0_7 %>% 
+  group_by(vei) %>% 
+  summarise(count = n())
+count_vei
 ```
 
+```{r}
+# change the VEI to a factor
+vei_0_7 <- vei_0_7 %>% 
+  mutate(vei = as.factor(vei))
+```
+
+```{r}
+ggplot(vei_0_7, aes(x=vei, fill = vei)) +  
+  geom_bar( ) +
+  scale_fill_manual(values =  c("0" = "cornsilk", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black")) +
+    labs(
+      x = "VEI - Volcanic Explosivity Index",
+      y = "Number of Eruptions",
+      title = "Number of Eruptions by VEI"
+      ) 
+```
+
+
+
+```{r}
+vei_0_7 %>% 
+ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
+    geom_point(size=2) +
+    scale_colour_manual(values =  c("0" = "cornsilk", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black")) +
+    labs(
+      x = "Year of eruption",
+      y = "Elevation (metres)",
+      title = "Number of Eruptions by Year and Elevation",
+      subtitle = "Using VEI scale"
+      ) 
+
+
+```
+
+But what is going on here - it looks like some volcanoes are erupting many times.
+
+Let's have a look.
+
+```{r}
+vei_0_7 %>% 
+  group_by(volcano_number.x)
+```
 
 
 ```{r}

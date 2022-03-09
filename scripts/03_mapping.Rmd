@@ -78,6 +78,98 @@ leaflet(vei_1_7) %>% addTiles() %>%
 ```
 
 ```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 7) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x,
+                   color = "red",
+                   radius = 5)  
 
 ```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 6) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x,
+                   color = "orange",
+                   radius = 5)  
+
+```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 5) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x,  
+                   color = "yellow",
+                   radius = 5)  
+```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 4) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x)  
+
+```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 3) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x)  
+
+```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 2) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x)  
+
+```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 1) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x)  
+
+```
+
+```{r}
+# Produces an interactive map
+vei_0_7 %>% 
+  filter(vei == 0) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude.x, 
+                   lat = ~latitude.x)  
+
+```
+
+
+
 
