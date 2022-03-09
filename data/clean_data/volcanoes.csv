@@ -911,7 +911,7 @@ volcano_number,volcano_name,primary_volcano_type,last_eruption_year,country,regi
 300083,Vilyuchik,Stratovolcano,-8050,Russia,Kamchatka and Mainland Asia,Kamchatka Peninsula,52.7,158.28,2173,Eruption Dated,Andesite / Basaltic Andesite,0,1,23874,276468,Subduction zone,Continental crust (>25 km)
 223050,Visoke,Stratovolcano,1957,DR Congo-Rwanda,Africa and Red Sea,Africa (central),-1.458,29.485,3696,Eruption Observed,Trachyandesite / Basaltic Trachyandesite,17165,88356,1162209,10953315,Rift zone,Continental crust (>25 km)
 300059,Visokiy,Stratovolcano,Unknown,Russia,Kamchatka and Mainland Asia,Kamchatka Peninsula,52.43,157.93,1234,Evidence Credible,Basalt / Picro-Basalt,0,0,30,232358,Subduction zone,Continental crust (>25 km)
-302040,Vitim Volcanic Field,Pyroclastic cone(s),Unknown,Russia,Kamchatka and Mainland Asia,Russia (southeastern),53.75,113.25,1250,Evidence Credible,Basalt / Picro-Basalt,669,669,669,10035,Unknown,
+302040,Vitim Volcanic Field,Pyroclastic cone(s),Unknown,Russia,Kamchatka and Mainland Asia,Russia (southeastern),53.75,113.25,1250,Evidence Credible,Basalt / Picro-Basalt,669,669,669,10035,Unknown,NA
 225020,"Voon, Tarso",Stratovolcano,Unknown,Chad,Africa and Red Sea,Africa (northern),20.92,17.28,3100,Unrest / Holocene,Trachyte / Trachydacite,0,0,0,3220,Intraplate,Continental crust (>25 km)
 300720,Voyampolsky,Shield(s),Unknown,Russia,Kamchatka and Mainland Asia,Kamchatka Peninsula,58.374,160.631,1103,Evidence Uncertain,Basalt / Picro-Basalt,0,0,74,2758,Subduction zone,Continental crust (>25 km)
 211050,Vulcano,Stratovolcano(es),1890,Italy,Mediterranean and Western Asia,Italy,38.404,14.962,500,Eruption Observed,Trachybasalt / Tephrite Basanite,2259,23059,86766,2093800,Subduction zone,Continental crust (>25 km)

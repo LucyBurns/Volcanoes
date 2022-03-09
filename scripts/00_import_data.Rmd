@@ -9,6 +9,7 @@ output: html_notebook
 library(tidyverse)
 library(here)
 library(lubridate)
+library(janitor)
 ```
 
 # Import Data Files
@@ -21,6 +22,7 @@ raw_events <- read_csv(here("data", "raw_data", "events.csv"))
 raw_sulfur <- read_csv(here("data", "raw_data", "sulfur.csv"))
 raw_tree_rings <- read_csv(here("data", "raw_data", "tree_rings.csv"))
 raw_volcano <- read_csv(here("data", "raw_data", "volcano.csv"))
+vei_scale <- read_csv(here("data", "raw_data", "vei_scale.csv"))
 ```
 
 ## Eruption Dataset
@@ -158,6 +160,26 @@ colnames(raw_volcano)
 volcanoes = subset(raw_volcano, select = c(1:10, 12:13, 23:28))
 ```
 
+## VEI Scale
+
+```{r}
+glimpse(vei_scale)
+```
+
+```{r}
+# Clean column names
+vei_scale<- clean_names(vei_scale)
+```
+
+
+The second column looks corrupted - so I shall remove it.
+
+```{r}
+# Remove extra column
+vei_scale = subset(vei_scale, select = -c(ejecta_volume_bulk) )
+```
+
+
 # Export clean datasets
 
 ```{r}
@@ -168,6 +190,7 @@ write_csv(commented_events, here("data", "clean_data", "commented_events.csv"))
 write_csv(sulfur, here("data", "clean_data", "sulfur.csv"))
 write_csv(tree_rings, here("data", "clean_data", "tree_rings.csv"))
 write_csv(volcanoes, here("data", "clean_data", "volcanoes.csv"))
+write_csv(vei_scale, here("data", "clean_data", "vei_scale.csv"))
 ```
 
 

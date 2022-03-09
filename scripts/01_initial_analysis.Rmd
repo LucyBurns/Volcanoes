@@ -3,3 +3,136 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+# Import Libraries
+```{r}
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(here)
+library(hrbrthemes)
+library(gapminder)
+library(viridis)
+```
+
+# Import Datasets
+
+```{r}
+eruptions <- read_csv(here("data/clean_data/eruptions.csv"))
+commented_events <- read_csv(here("data/clean_data/commented_events.csv"))
+events <- read_csv(here("data/clean_data/events.csv"))
+sulfur <- read_csv(here("data/clean_data/sulfur.csv"))
+tree_rings <- read_csv(here("data/clean_data/tree_rings.csv"))
+volcanoes <- read_csv(here("data/clean_data/volcanoes.csv"))
+vei_scale <- read_csv(here("data/clean_data/vei_scale.csv"))
+```
+
+# Split the volcanoes by VEI
+
+```{r}
+# Count number of eruptions by VEI
+eruptions %>% 
+  group_by(vei) %>% 
+  summarise(count = n())
+```
+
+
+
+```{r}
+# Add the volcano detail onto the eruption database
+eruptions_volc <- left_join(eruptions, volcanoes, by = "volcano_name")
+```
+
+```{r}
+eruptions_volc %>% 
+  group_by(vei) %>% 
+  summarise(count = n())
+```
+
+
+```{r}
+# Create dataset with just recorded vei values
+vei_0_7 <- eruptions_volc %>% drop_na(vei)
+```
+
+```{r}
+# Looking at those before the year 0
+vei_0_7 %>% 
+  filter(start_year<0) %>% 
+ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
+    geom_point(size=6) 
+```
+
+
+
+```{r}
+# Most basic bubble plot
+ggplot(vei_0_7, aes(x=latitude.x, y=longitude.x, size = population_within_5_km, colour = vei)) +
+    geom_point(alpha=0.7)
+```
+
+
+```{r}
+vei_0_7 %>% 
+  ggplot(aes(x=vei)) +
+    geom_histogram() +
+    facet_wrap(~primary_volcano_type)
+```
+
+```{r}
+vei_0_7 %>% 
+  ggplot(aes(x=vei)) +
+    geom_histogram() +
+    facet_wrap(~region)
+```
+
+```{r}
+vei_0_7 %>% 
+  ggplot(aes(x=population_within_30_km, y = vei)) +
+    geom_point() 
+```
+
+```{r}
+vei_0_7 %>% 
+  ggplot(aes(x=start_year, y = population_within_100_km, colour = vei)) +
+    geom_point() 
+```
+
+
+# Population near Volcanoes
+
+We know the population within 5, 10, 30 and 100km
+We know the last time a volcano blew
+We know what the VEI of the last eruption.
+
+If we assume that a volcan eruption will be at least the same as the previous eruption where is the biggest population at risk?
+
+```{r}
+# Match the VEI information into the volcano dataset
+volcanoes_vei <- left_join(vei_0_7, vei_scale, by = "vei") 
+
+```
+
+
+
+
+```{r}
+ 
+ggplot(vei_1_7, 
+       aes(x=weight)) + geom_histogram()
+    
+  
+  
+
+ggplot(df, aes(x=weight)) + geom_histogram()
+# Change the width of bins
+ggplot(df, aes(x=weight)) + 
+  geom_histogram(binwidth=1)
+# Change colors
+p<-ggplot(df, aes(x=weight)) + 
+  geom_histogram(color="black", fill="white")
+p
+```
+
+
+
+

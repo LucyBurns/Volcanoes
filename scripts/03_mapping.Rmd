@@ -1,0 +1,83 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(sf)
+library(tidyverse)
+library(leaflet)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
+library(jsonlite)
+library(geosphere)
+```
+
+```{r}
+
+```
+
+
+```{r}
+volcanoes <- volcanoes %>% 
+  mutate_at(
+    vars(
+        longitude, latitude),
+    as.numeric
+    ) 
+```
+
+```{r}
+# Produces an interactive map
+volcanoes %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addCircleMarkers(lng = ~longitude, 
+                   lat = ~latitude)  
+```
+
+
+```{r}
+# Basic plot of volcanoes
+data(volcanoes)
+
+leaflet(data = volcanoes) %>% addTiles() %>%
+  addMarkers(~longitude, ~latitude, 
+             popup = ~as.character(volcano_name), label = ~as.character(volcano_name))
+```
+
+
+
+```{r}
+getColor <- function(vei_1_7) {
+  sapply(vei_1_7$vei, function(vei) {
+  if(vei > 5) {
+    "purple"
+  } else if(vei > 4) {
+    "red"
+  } else if(vei > 3) {
+    "orange"
+  } else if(vei > 2) {
+    "yellow"
+  } else {
+    "white"
+  } })
+}
+
+icons <- awesomeIcons(
+  icon = 'ios-close',
+  iconColor = 'black',
+  library = 'ion',
+  markerColor = getColor(vei_1_7)
+)
+
+leaflet(vei_1_7) %>% addTiles() %>%
+  addAwesomeMarkers(~longitude, ~latitude, icon=icons, 
+                    label=~as.character(volcano_name))
+```
+
+```{r}
+
+```
+
