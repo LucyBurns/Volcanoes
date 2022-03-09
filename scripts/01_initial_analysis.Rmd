@@ -82,7 +82,7 @@ vei_0_7 <- vei_0_7 %>%
 ```{r}
 ggplot(vei_0_7, aes(x=vei, fill = vei)) +  
   geom_bar( ) +
-  scale_fill_manual(values =  c("0" = "cornsilk", "1" = "gold1", "2" = "darkgoldenrod2",
+  scale_fill_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
           "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
           "7" = "black")) +
     labs(
@@ -91,8 +91,6 @@ ggplot(vei_0_7, aes(x=vei, fill = vei)) +
       title = "Number of Eruptions by VEI"
       ) 
 ```
-
-
 
 ```{r}
 vei_0_7 %>% 
@@ -116,14 +114,63 @@ But what is going on here - it looks like some volcanoes are erupting many times
 Let's have a look.
 
 ```{r}
-vei_0_7 %>% 
-  group_by(volcano_number.x)
+eruption_count <- vei_0_7 %>% 
+  group_by(volcano_number) %>% 
+  summarise(e_count=n()) %>% 
+  arrange(desc(e_count))
+```
+
+```{r}
+# Add in the volcano information to the eruption counts
+eruption_count <- left_join(eruption_count, volcanoes, by = "volcano_number")
+```
+
+```{r}
+count_of_counts <- eruption_count %>% 
+  group_by(e_count) %>% 
+  summarise(no_volc =n())
+```
+
+```{r}
+count_of_counts %>% 
+ggplot(aes(x=e_count, y=no_volc)) + 
+    geom_point(size=2) +
+    labs(
+      x = "Number of times a volcano has erupted",
+      y = "Count of Volcanoes",
+      title = "How many times does a volcano erupt?"
+      ) 
+```
+Where are the  most frequently erupting volcanoes located?
+
+```{r}
+# Produces an interactive map
+eruption_count %>% 
+  filter(e_count > 100) %>% 
+leaflet() %>% 
+    addTiles() %>% 
+    addMarkers(~longitude, ~latitude, 
+             popup = ~as.character(volcano_name), label = ~as.character(volcano_name))
+
+```
+
+```{r}
+ggplot() +
+      geom_map(
+        data = world, map = world,
+        aes(x = long, y = lat, map_id = region),
+        colour ="black", fill = "lightgrey", size = 0.1
+      ) +
+      geom_point(
+        data = eruption_count,
+        aes(longitude, latitude)
+      ) 
 ```
 
 
 ```{r}
 # Most basic bubble plot
-ggplot(vei_0_7, aes(x=latitude.x, y=longitude.x, size = population_within_5_km, colour = vei)) +
+ggplot(vei_0_7, aes(x=latitude, y=longitude, size = population_within_5_km, colour = vei)) +
     geom_point(alpha=0.7)
 ```
 
@@ -131,14 +178,14 @@ ggplot(vei_0_7, aes(x=latitude.x, y=longitude.x, size = population_within_5_km, 
 ```{r}
 vei_0_7 %>% 
   ggplot(aes(x=vei)) +
-    geom_histogram() +
+    geom_bar() +
     facet_wrap(~primary_volcano_type)
 ```
 
 ```{r}
 vei_0_7 %>% 
   ggplot(aes(x=vei)) +
-    geom_histogram() +
+    geom_bar() +
     facet_wrap(~region)
 ```
 
@@ -152,42 +199,6 @@ vei_0_7 %>%
 vei_0_7 %>% 
   ggplot(aes(x=start_year, y = population_within_100_km, colour = vei)) +
     geom_point() 
-```
-
-
-# Population near Volcanoes
-
-We know the population within 5, 10, 30 and 100km
-We know the last time a volcano blew
-We know what the VEI of the last eruption.
-
-If we assume that a volcan eruption will be at least the same as the previous eruption where is the biggest population at risk?
-
-```{r}
-# Match the VEI information into the volcano dataset
-volcanoes_vei <- left_join(vei_0_7, vei_scale, by = "vei") 
-
-```
-
-
-
-
-```{r}
- 
-ggplot(vei_1_7, 
-       aes(x=weight)) + geom_histogram()
-    
-  
-  
-
-ggplot(df, aes(x=weight)) + geom_histogram()
-# Change the width of bins
-ggplot(df, aes(x=weight)) + 
-  geom_histogram(binwidth=1)
-# Change colors
-p<-ggplot(df, aes(x=weight)) + 
-  geom_histogram(color="black", fill="white")
-p
 ```
 
 

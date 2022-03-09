@@ -12,6 +12,7 @@ library(rnaturalearthdata)
 library(rgeos)
 library(jsonlite)
 library(geosphere)
+library(gganimate)
 ```
 
 ```{r}
@@ -170,6 +171,97 @@ leaflet() %>%
 
 ```
 
+```{r}
+vei_0_7 <- vei_0_7 %>% 
+  mutate(vei_number = as.numeric(vei))
+```
+
+```{r}
+world <- map_data("world")
+```
+
+
+```{r}
+base_map <- 
+  ggplot()+
+  geom_map(
+    data = world, map = world,
+    aes(x = long, y = lat, map_id = region),
+    colour ="black", fill = "lightgrey", size = 0.1
+  ) +
+  geom_point(
+    data = vei_0_7,
+    aes(longitude, latitude))
+ 
+```
+
+```{r}
+base_map
+```
+
+```{r}
+min_longitude <- min(vei_0_7$longitude)
+max_longitude <- max(vei_0_7$longitude)
+min_latitude <- min(vei_0_7$latitude)
+max_latitude <- max(vei_0_7$latitude)
+
+map_with_data <- map_with_data +
+  coord_quickmap(xlim = c(min_longitude, max_longitude),
+                 ylim = c(min_latitude, max_latitude))
+map_with_data
+```
+
+
+```{r}
+map_with_data <- base_map +
+  geom_point(data = vei_0_7, 
+             aes(x = longitude, y = latitude, 
+                 color=vei_0_7, group=start_year)) +
+  coord_quickmap(xlim = c(min_longitude, max_longitude),  
+                 ylim = c(min_latitude, max_latitude))
+
+map_with_data
+```
 
 
 
+
+
+```{r}
+map_with_animation <- map_with_data +
+  transition_time(vei_number) +
+  ggtitle('VEI: {frame_time}',
+          subtitle = 'Frame {frame} of {nframes}')
+num_vei <- max(vei_0_7$vei_number) - min(vei_0_7$vei_number) + 1
+animate(map_with_animation, nframes = num_vei)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+base_map <- 
+  ggplot()+
+  geom_map(
+    data = world, map = world,
+    aes(x = long, y = lat, map_id = region),
+    colour ="black", fill = "lightgrey", size = 0.1
+  ) +
+  geom_point(
+    data = vei_0_7,
+    aes(longitude, latitude, colour = vei)
+  ) +
+  scale_colour_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black"))
+```
