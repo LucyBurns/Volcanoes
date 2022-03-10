@@ -1,0 +1,303 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{Final Project Brief}
+\author{}
+\date{\vspace{-2.5em}}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Final Project Brief},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\hypertarget{todays-learning-objectives}{%
+\section{\texorpdfstring{Today's Learning
+Objectives}{Today's Learning Objectives }}\label{todays-learning-objectives}}
+
+\begin{itemize}
+\tightlist
+\item
+  Understand what is required for the final project
+\item
+  Give an introduction to the requirements
+\item
+  Give an introduction to the expectations and delivery approach
+\end{itemize}
+
+\textbf{Duration - 1/2 hour}
+
+\hypertarget{the-final-project}{%
+\section{The Final Project}\label{the-final-project}}
+
+\hypertarget{project-aims-and-learning-objectives}{%
+\subsection{Project aims and learning
+objectives}\label{project-aims-and-learning-objectives}}
+
+Over the next week and a bit you will work individually to carry out an
+\textbf{end-to-end data project}. This will allow you to consolidate and
+expand everything you have learned on the course.
+
+The projects vary in terms of the questions asked. They may require a
+machine learning solution or it may be an in-depth analysis deep dive
+into a specific dataset looking for key insights. All should include
+\textbf{appropriate visualisation outputs}.
+
+You will have to \textbf{present your findings using slides}. If you are
+doing the PDA you will also need to document your analysis steps in the
+form of a \textbf{report with embedded visualisations and text} (R
+Markdown or Jupyter Notebook) detailing key steps and insights, with
+appropriate documentation of data source, quality and ethics and any
+assumptions you've made. You can organise your project folders however
+you see fit, but remember to make your code reproducible, and keep the
+project organised and easy for others to navigate.
+
+You can do your final project in either \textbf{R or Python}.
+
+Remember the objective of this project is not to necessarily have the
+most impressive final presentation (you can always continue working on
+it after the course!). Use this project as a chance to get more
+\textbf{practice of skills}, whether that be coding Python or maybe you
+want to use R to get the data wrangling and then want to focus on
+practising modelling. It's up to you!
+
+\hypertarget{the-brief}{%
+\subsection{The Brief}\label{the-brief}}
+
+Each project has its own brief contained within the relevant folder.
+
+Consider the following learning objectives when trying to answer your
+chosen brief:
+
+\begin{itemize}
+\tightlist
+\item
+  Capture requirements from the business and translate these into an
+  achievable analysis project
+\item
+  Create a project plan to deliver an outcome
+\item
+  Identify the key insights and communicate these back to the business
+\item
+  Maintain required client confidentiality
+\end{itemize}
+
+\textbf{Please note:} These briefs were written by your instructors. The
+data is openly available, and you will be able to post your project to a
+public GitHub. While the companies themselves did not write the brief,
+there is no issue with you showing them your work by tagging them on
+Github/LinkedIn/Twitter.
+
+\hypertarget{timescales}{%
+\subsection{Timescales}\label{timescales}}
+
+Below is the proposed plan of activities for the next week:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Date & Activity \\
+\midrule
+\endhead
+Friday & Project handout \& starting a plan \\
+Monday & Present your plan to an instructor \\
+Tuesday & Project \\
+Wednesday & Project \\
+Thursday & 1-to-1 check in with instructors \\
+Friday & Project \\
+Weekend & Project \\
+Monday & 1-to-1 check in with instructors \\
+Tuesday & Project \\
+Wednesday & Project presentations \\
+Thursday & PDA \\
+Friday & \textbf{Graduation!} 🎂🥂🎈🎉🎊 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{expectations}{%
+\subsection{Expectations}\label{expectations}}
+
+As this is an end-to-end data project we'd like you to carry out and
+document each stage of your project. The steps we'd like to see are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Defining:} identifying the question being solved and why it is
+  important to the business
+\item
+  \textbf{Planning:} plan the analysis and rough timings over the
+  project period
+\item
+  \textbf{Understanding:} initial understanding of provided data and
+  identify any data augmentation
+\item
+  \textbf{Analysing:} manipulation, modelling and validating
+\item
+  \textbf{Concluding:} inferring and communicating findings through
+  reports and visualisations
+\item
+  \textbf{Implementing:} recommendations for real-world implementation,
+  next steps and any limitations to using the findings and outputs.
+\end{enumerate}
+
+\hypertarget{confidentiality}{%
+\subsection{Confidentiality}\label{confidentiality}}
+
+Please consider whether there are any confidentiality or ethical issues
+with the data in your project. The \textbf{current project briefs that
+we provide all use open data} so it should not be a problem. However,
+you should still consider whether there is any confidential or
+identifiable information that should be anonymised, or whether there is
+anything you should be wary of putting on a public GitHub repository. If
+you are using your own real data from a client, there should be clear
+rules set out on whether you are able to directly refer to the client
+name and publish any of the data/results to GitHub. Do speak to an
+instructor if you're unsure about any confidentiality issues with any of
+the data you're using!
+
+\hypertarget{final-presentation}{%
+\subsection{Final Presentation}\label{final-presentation}}
+
+In the presentation session you will have \textbf{up to 10 minutes},
+plus time for questions to \textbf{present your findings and outputs}
+back to the business.
+
+We'd like you to:
+
+\begin{itemize}
+\tightlist
+\item
+  Talk through your approach to the business question
+\item
+  Discuss any challenges encountered and how you addressed these
+\item
+  Present a story of your final insights which compels your client to
+  action
+\item
+  If your solution would require implementation, discuss how this could
+  be done
+\item
+  Any enhancements you would pick up if you'd had more time
+\item
+  Any lessons for the future
+\end{itemize}
+
+\hypertarget{asking-questions-during-project-weeks}{%
+\subsection{Asking questions during project
+weeks}\label{asking-questions-during-project-weeks}}
+
+Instructors will be available to answer questions during the project
+week but there are requirements for coming with questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Provide a background explanation to your question/task - we may not be
+  as familiar with your project as you are.
+\item
+  Evidence you have tried researching a solution before coming to us -
+  we will be asking what you've tried looking up first (whether that be
+  on Google or the notes).\\
+\item
+  We will be aiming to provide guidance on your problem but not
+  necessarily handing you an answer (because often there isn't a single
+  `right' answer and it's up to you to make assumptions).
+\end{itemize}
+
+This is not us being cruel - after this project you won't have
+instructors to hand to answer questions so \textbf{the more practice you
+get problem solving the better}. Increased practice problem solving is a
+much more valuable skill that a more `complete' final project but being
+handed the answers.
+
+\hypertarget{github}{%
+\subsection{GitHub}\label{github}}
+
+We expect you to have the project on a \textbf{new public Github repo},
+to which you commit and push regularly any progress you're making on the
+project. Once you've created your repo, \textbf{send the link to your
+instructors} so we can check how you're getting on! Please also use the
+\textbf{homework forms} to update us on how it's going and if you're
+facing any issues.
+
+\hypertarget{pda}{%
+\subsection{PDA}\label{pda}}
+
+If you are completing the PDA, please refer to the provided PDA
+documents in the \texttt{final\_project\_pda\_info} folder
+\textbf{before you get started on the project} to make sure you will be
+able to meet all the additional requirements. You can also refer to the
+all learning outcomes being targeted throughout your project work to
+make sure you're doing the necessary things to pass. Please do ask
+instructors if you need anything in the PDA documents clarified.
+
+\end{document}

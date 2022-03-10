@@ -10,16 +10,15 @@ output:
   pdf_document: default
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 ```
 
 # Today's Learning Objectives<br>
 
-* Understand what is required for the final project
-* Give an introduction to the requirements
-* Give an introduction to the expectations and delivery approach
+-   Understand what is required for the final project
+-   Give an introduction to the requirements
+-   Give an introduction to the expectations and delivery approach
 
 **Duration - 1/2 hour**<br>
 
@@ -27,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 
 # The Final Project
 
-<br> 
+<br>
 
 ## Project aims and learning objectives
 
@@ -39,9 +38,9 @@ You will have to **present your findings using slides**. If you are doing the PD
 
 You can do your final project in either **R or Python**.
 
-Remember the objective of this project is not to necessarily have the most impressive final presentation (you can always continue working on it after the course!). Use this project as a chance to get more **practice of skills**, whether that be coding Python or maybe you want to use R to get the data wrangling and then want to focus on practising modelling. It's up to you! 
+Remember the objective of this project is not to necessarily have the most impressive final presentation (you can always continue working on it after the course!). Use this project as a chance to get more **practice of skills**, whether that be coding Python or maybe you want to use R to get the data wrangling and then want to focus on practising modelling. It's up to you!
 
-<br> 
+<br>
 
 ## The Brief
 
@@ -49,16 +48,14 @@ Each project has its own brief contained within the relevant folder.
 
 Consider the following learning objectives when trying to answer your chosen brief:
 
-* Capture requirements from the business and translate these into an achievable analysis project
-* Create a project plan to deliver an outcome
-* Identify the key insights and communicate these back to the business
-* Maintain required client confidentiality
+-   Capture requirements from the business and translate these into an achievable analysis project
+-   Create a project plan to deliver an outcome
+-   Identify the key insights and communicate these back to the business
+-   Maintain required client confidentiality
 
-<div class="emphasis">
-
+::: emphasis
 **Please note:** These briefs were written by your instructors. The data is openly available, and you will be able to post your project to a public GitHub. While the companies themselves did not write the brief, there is no issue with you showing them your work by tagging them on Github/LinkedIn/Twitter.
-
-</div>
+:::
 
 <br>
 
@@ -66,67 +63,66 @@ Consider the following learning objectives when trying to answer your chosen bri
 
 Below is the proposed plan of activities for the next week:
 
-| Date | Activity |
-|-----------------|-------------------------------------|
-| Friday    | Project handout & starting a plan |
+| Date      | Activity                           |
+|-----------|------------------------------------|
+| Friday    | Project handout & starting a plan  |
 | Monday    | Present your plan to an instructor |
-| Tuesday   | Project |
-| Wednesday | Project |
-| Thursday  | 1-to-1 check in with instructors |
-| Friday    | Project |
-| Weekend   | Project |
-| Monday    | 1-to-1 check in with instructors |
-| Tuesday   | Project |
-| Wednesday | Project presentations  |
-| Thursday  | PDA |
-| Friday    | **Graduation!** 🎂🥂🎈🎉🎊 |
+| Tuesday   | Project                            |
+| Wednesday | Project                            |
+| Thursday  | 1-to-1 check in with instructors   |
+| Friday    | Project                            |
+| Weekend   | Project                            |
+| Monday    | 1-to-1 check in with instructors   |
+| Tuesday   | Project                            |
+| Wednesday | Project presentations              |
+| Thursday  | PDA                                |
+| Friday    | **Graduation!** 🎂🥂🎈🎉🎊              |
 
-<br> 
+<br>
 
 ## Expectations
 
 As this is an end-to-end data project we'd like you to carry out and document each stage of your project. The steps we'd like to see are:
 
-1.	**Defining:** identifying the question being solved and why it is important to the business
-2.	**Planning:** plan the analysis and rough timings over the project period
-3.	**Understanding:** initial understanding of provided data and identify any data augmentation
-4.	**Analysing:** manipulation, modelling and validating
-5.	**Concluding:** inferring and communicating findings through reports and visualisations
-6.	**Implementing:** recommendations for real-world implementation, next steps and any limitations to using the findings and outputs.
+1.  **Defining:** identifying the question being solved and why it is important to the business
+2.  **Planning:** plan the analysis and rough timings over the project period
+3.  **Understanding:** initial understanding of provided data and identify any data augmentation
+4.  **Analysing:** manipulation, modelling and validating
+5.  **Concluding:** inferring and communicating findings through reports and visualisations
+6.  **Implementing:** recommendations for real-world implementation, next steps and any limitations to using the findings and outputs.
 
-
-## Confidentiality 
+## Confidentiality
 
 Please consider whether there are any confidentiality or ethical issues with the data in your project. The **current project briefs that we provide all use open data** so it should not be a problem. However, you should still consider whether there is any confidential or identifiable information that should be anonymised, or whether there is anything you should be wary of putting on a public GitHub repository. If you are using your own real data from a client, there should be clear rules set out on whether you are able to directly refer to the client name and publish any of the data/results to GitHub. Do speak to an instructor if you're unsure about any confidentiality issues with any of the data you're using!
 
-<br> 
+<br>
 
 ## Final Presentation
 
-In the presentation session you will have **up to 10 minutes**, plus time for questions to **present your findings and outputs** back to the business. 
+In the presentation session you will have **up to 10 minutes**, plus time for questions to **present your findings and outputs** back to the business.
 
 We'd like you to:
 
-* Talk through your approach to the business question
-* Discuss any challenges encountered and how you addressed these
-* Present a story of your final insights which compels your client to action
-* If your solution would require implementation, discuss how this could be done
-* Any enhancements you would pick up if you'd had more time
-* Any lessons for the future
+-   Talk through your approach to the business question
+-   Discuss any challenges encountered and how you addressed these
+-   Present a story of your final insights which compels your client to action
+-   If your solution would require implementation, discuss how this could be done
+-   Any enhancements you would pick up if you'd had more time
+-   Any lessons for the future
 
-<br> 
+<br>
 
-## Asking questions during project weeks 
+## Asking questions during project weeks
 
 Instructors will be available to answer questions during the project week but there are requirements for coming with questions:
 
-* Provide a background explanation to your question/task - we may not be as familiar with your project as you are. 
-* Evidence you have tried researching a solution before coming to us - we will be asking what you've tried looking up first (whether that be on Google or the notes).  
-* We will be aiming to  provide guidance on your problem but not necessarily handing you an answer (because often there isn't a single 'right' answer and it's up to you to make assumptions). 
+-   Provide a background explanation to your question/task - we may not be as familiar with your project as you are.
+-   Evidence you have tried researching a solution before coming to us - we will be asking what you've tried looking up first (whether that be on Google or the notes).\
+-   We will be aiming to provide guidance on your problem but not necessarily handing you an answer (because often there isn't a single 'right' answer and it's up to you to make assumptions).
 
-This is not us being cruel - after this project you won't have instructors to hand to answer questions so **the more practice you get problem solving the better**. Increased practice problem solving is a much more valuable skill that a more 'complete' final project but being handed the answers. 
+This is not us being cruel - after this project you won't have instructors to hand to answer questions so **the more practice you get problem solving the better**. Increased practice problem solving is a much more valuable skill that a more 'complete' final project but being handed the answers.
 
-<br> 
+<br>
 
 ## GitHub
 

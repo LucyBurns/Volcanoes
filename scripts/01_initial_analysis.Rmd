@@ -13,6 +13,10 @@ library(hrbrthemes)
 library(gapminder)
 library(viridis)
 library(RColorBrewer)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
 ```
 
 # Import Datasets
@@ -153,6 +157,22 @@ leaflet() %>%
              popup = ~as.character(volcano_name), label = ~as.character(volcano_name))
 
 ```
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+```{r}
+ggplot(data = world) +
+    geom_sf(color = "black", fill = "lightgrey") +
+    xlab("Longitude") + ylab("Latitude") +
+    ggtitle("World map")+
+      geom_point(
+        data = eruption_count,
+        colour = "firebrick",
+        aes(longitude, latitude)
+      ) 
+```
+
 
 ```{r}
 ggplot() +

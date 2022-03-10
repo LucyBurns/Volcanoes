@@ -1,0 +1,139 @@
+---
+title: "Question One: Where are the volcanic eruptions likely to occur?"
+output: html_notebook
+---
+
+# Import Libraries
+```{r}
+library(tidyverse)
+library(leaflet)
+library(ggplot2)
+library(gapminder)
+library(lubridate)
+library(here)
+library(hrbrthemes)
+library(viridis)
+library(RColorBrewer)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
+library(geojsonio)
+library(rgdal)
+```
+
+# Import Datasets
+```{r}
+eruptions <- read_csv(here("data/clean_data/eruptions.csv"))
+commented_events <- read_csv(here("data/clean_data/commented_events.csv"))
+events <- read_csv(here("data/clean_data/events.csv"))
+sulfur <- read_csv(here("data/clean_data/sulfur.csv"))
+tree_rings <- read_csv(here("data/clean_data/tree_rings.csv"))
+volcanoes <- read_csv(here("data/clean_data/volcanoes.csv"))
+vei_scale <- read_csv(here("data/clean_data/vei_scale.csv"))
+```
+
+```{r}
+volcanoes <- volcanoes %>% 
+  mutate_at(
+    vars(
+        longitude, latitude),
+    as.numeric
+    ) 
+```
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+
+```{r}
+ggplot(data = world) +
+    geom_sf(color = "black", fill = "lightgrey") +
+    xlab("Longitude") + ylab("Latitude") +
+    ggtitle("World map")+
+      geom_point(
+        data = eruption_count,
+        colour = "firebrick",
+        aes(longitude, latitude)
+      ) 
+```
+
+It is clear that volcanoes are located along the edges of the tectonic plates.
+
+What other factors affect the location of active volcanoes?
+
+```{r}
+vei_0_7 %>% 
+ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
+    geom_point(size=2, alpha = 0.3) +
+    scale_colour_manual(values =  c("0" = "cornsilk", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black")) +
+    labs(
+      x = "Year of eruption",
+      y = "Elevation (metres)",
+      title = "Number of Eruptions by Year and Elevation",
+      subtitle = "Using VEI scale"
+      ) +
+    theme(panel.background = element_rect(fill = "black"))
+
+
+```
+
+What are those straight lines that are occuring? Perhaps some volcanoes are repeatedly erupting? Let's have a look.
+
+```{r}
+eruption_count <- vei_0_7 %>% 
+  group_by(volcano_number) %>% 
+  summarise(e_count=n()) %>% 
+  arrange(desc(e_count))
+```
+
+```{r}
+# Add in the volcano information to the eruption counts
+eruption_count <- left_join(eruption_count, volcanoes, by = "volcano_number")
+```
+
+```{r}
+count_of_counts <- eruption_count %>% 
+  group_by(e_count) %>% 
+  summarise(no_volc =n())
+```
+
+```{r}
+count_of_counts %>% 
+ggplot(aes(x=e_count, y=no_volc)) + 
+    geom_point(size=2) +
+    labs(
+      x = "Number of times a volcano has erupted",
+      y = "Count of Volcanoes",
+      title = "How many times does a volcano erupt?"
+      ) 
+```
+
+Where are the most frequently erupting volcanoes located?
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+  ggplot(data = world) +
+      geom_sf(color = "black", fill = "lightgrey") +
+      xlab("Longitude") + 
+      ylab("Latitude") +
+      ggtitle("World map") +
+  geom_point(
+        data = eruption_count,
+        aes(x = longitude, 
+            y = latitude,
+            colour = e_count) +
+        scale_colour_brewer
+      ) 
+```
+
+Can we look at which volcanoes have been active recently - so number of eruptions and recency of eruptions.
+
+
+
+
+
