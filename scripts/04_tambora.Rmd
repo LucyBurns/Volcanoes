@@ -1,0 +1,61 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
+library(ggplot2)
+```
+
+```{r}
+ggplot(data = world) +
+    geom_sf(aes(fill = pop_est)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+```
+
+```{r}
+# filter the data to Indonesia
+country_indonesia <- world %>%
+  filter(name == "Indonesia")
+```
+
+```{r}
+# Let's find all Indonesian volcanoes
+indonesia_vol <- volcanoes %>% 
+  filter(country == "Indonesia")
+```
+
+```{r}
+# Base map of Indonesia 
+ggplot(country_indonesia) + 
+  geom_sf() + 
+  ggtitle("Map of Indonesia and its Volcanoes") + 
+    xlab("Longitude") + ylab("Latitude") +
+  geom_point(data = indonesia_vol, 
+             aes(x= longitude,  y = latitude),
+             size = 2, shape = 24, colour = "darkred", fill = "darkred")
+```
+
+```{r}
+# Base map of Indonesia 
+ggplot(country_indonesia) + 
+  geom_sf() + 
+  ggtitle("Map of Indonesia and its Volcanoes") + 
+    xlab("Longitude") + ylab("Latitude") +
+  geom_point(data = indonesia_vol %>% filter(volcano_name == "Tambora"), 
+             aes(x= longitude,  y = latitude),
+             size = 2, shape = 24, colour = "darkred", fill = "darkred")
+```
+
+```{r}
+  geom_point(data = . %>% filter(continent == "Asia"), 
+             size=5, color="gray")
+```
+
+Java is considered to be the most populated island in the world with about 152 million people living on the island, neighbouring Sumatra is the fourth most populous island housing 58 million people. (Source: https://wonderingmaps.com/indonesia-population-density/)
+

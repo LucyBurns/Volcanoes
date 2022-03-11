@@ -15,10 +15,6 @@ library(geosphere)
 library(gganimate)
 ```
 
-```{r}
-
-```
-
 
 ```{r}
 volcanoes <- volcanoes %>% 
@@ -240,9 +236,24 @@ animate(map_with_animation, nframes = num_vei)
 
 
 
+```{r}
+eruptions <- read_csv(here("data/clean_data/eruptions.csv"))
+st_read("data/raw_data/PB2002_plates.shp")
+
+plates = st_read(system.file("data/raw_data/PB2002_plates.shp", package="sf"))
+
+plates <- geojson_read(here("data/raw_data/PB2002_plates.json",  what = "sp"))
+
+```
 
 
-
+```{r}
+my_spdf <- readOGR( 
+  dsn= paste0(getwd(),"data/raw_data") , 
+  layer="PB2002_plates.shp",
+  verbose=FALSE
+)
+```
 
 
 

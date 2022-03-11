@@ -126,14 +126,38 @@ class(world)
         data = eruption_count,
         aes(x = longitude, 
             y = latitude,
-            colour = e_count) +
-        scale_colour_brewer
-      ) 
+            colour = e_count)       ) 
 ```
 
 Can we look at which volcanoes have been active recently - so number of eruptions and recency of eruptions.
 
+```{r}
+# Drop NAs from eruption count table
+eruption_count <- eruption_count %>% drop_na(last_eruption_year)
+```
 
+```{r}
+# Drop Unknowns from eruption count table
+eruption_count <- eruption_count %>% 
+  filter(last_eruption_year != "Unknown")
+```
 
+```{r}
+# Convert the last eruption year to numeric
+eruption_count$last_eruption_year <- 
+  as.numeric(as.character(eruption_count$last_eruption_year))
+```
+
+```{r}
+# Create new column showing years since last eruption
+eruption_count <- eruption_count %>% 
+  mutate(years_since = 2020 - last_eruption_year)
+```
+
+```{r}
+eruption_count %>% 
+  ggplot(aes(x=years_since, y=e_count, color = tectonic_zone)) +
+    geom_point(size = 4) 
+```
 
 

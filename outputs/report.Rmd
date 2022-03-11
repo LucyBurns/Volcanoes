@@ -44,39 +44,23 @@ The data was downloaded and cleaned by [Thomas Mock](https://twitter.com/thomas_
 
 11178 rows, 15 columns
 
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| Name                   | Description                           | Data Type | NAs       | Action            |
-+========================+=======================================+===========+===========+===================+
-| volcano number         | volcano unique ID                     | numeric   | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| volcano name           | name                                  | character | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| eruption number        | eruption unique ID                    | numeric   | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| eruption category      | category                              | character | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| area of activity       | area of activity (on volcano)         | character | 6484      | Remove column     |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| vei                    | volcanic explosive index (0-8)        | numeric   | 2906      |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| start year             | start year                            | numeric   | 1         | Remove one NA row |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| start month            | start month                           | numeric   | 193       | Remove column     |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| start day              | start day                             | numeric   | 196       | Remove column     |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| evidence method dating | evidence for dating volcanic eruption | character | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| end year               | end year                              | numeric   | 6846      | Remove column     |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| end month              | end month                             | numeric   | 6849      | Remove column     |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| end day                | end day                               | numeric   | 6852      | Remove column     |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| latitude               | latitude                              | numeric   | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
-| longitude              | longitude                             | numeric   | 0         |                   |
-+------------------------+---------------------------------------+-----------+-----------+-------------------+
+| Name                   | Description                           | Data Type | NAs  | Action            |
+|------------------------|---------------------------------------|-----------|------|-------------------|
+| volcano number         | volcano unique ID                     | numeric   | 0    |                   |
+| volcano name           | name                                  | character | 0    |                   |
+| eruption number        | eruption unique ID                    | numeric   | 0    |                   |
+| eruption category      | category                              | character | 0    |                   |
+| area of activity       | area of activity (on volcano)         | character | 6484 | Remove column     |
+| vei                    | volcanic explosive index (0-8)        | numeric   | 2906 |                   |
+| start year             | start year                            | numeric   | 1    | Remove one NA row |
+| start month            | start month                           | numeric   | 193  | Remove column     |
+| start day              | start day                             | numeric   | 196  | Remove column     |
+| evidence method dating | evidence for dating volcanic eruption | character | 0    |                   |
+| end year               | end year                              | numeric   | 6846 | Remove column     |
+| end month              | end month                             | numeric   | 6849 | Remove column     |
+| end day                | end day                               | numeric   | 6852 | Remove column     |
+| latitude               | latitude                              | numeric   | 0    |                   |
+| longitude              | longitude                             | numeric   | 0    |                   |
 
 #### Cleaning Needed
 
@@ -221,6 +205,32 @@ Action: remove all NA rows
 Split the tectonic settings column into zone and crust and delete the original column.
 
 Remove the additional rock columns as not needed for analysis.
+
+### VEI Scale
+
+Volcanic Explosivity Index
+
+9 rows, 7 variables
+
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| Name                    | Description                         | Data Type       | Action                            |
++=========================+=====================================+=================+===================================+
+| vei                     | VEI number                          | Numeric         | Change to function for analysis   |
+|                         |                                     |                 |                                   |
+|                         | (Volcanic Explosivity Index)        |                 |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| classification          | classification name                 | character       |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| description             | description of effect               | character       |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| plume                   | size/scale of plume                 | character       |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| frequency               | frequency                           | character       |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| tropospheric injection  | effect on the troposphere           | character       |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
+| stratospheric injection | effect on the stratosphere          | character       |                                   |
++-------------------------+-------------------------------------+-----------------+-----------------------------------+
 
 ## Data formats
 

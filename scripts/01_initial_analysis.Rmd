@@ -221,6 +221,27 @@ vei_0_7 %>%
     geom_point() 
 ```
 
+```{r}
+ggplot(sulfur, aes(x=year)) +
+    geom_line( aes(y=neem), colour = "red") +  
+    geom_line( aes(y=wdc), colour = "blue") 
+```
 
+```{r}
+# Find eruptions between 500 and 706
+volcanoes_500_705 <- eruptions %>% 
+  filter(between(start_year, 500, 705))
+```
+
+```{r}
+# Filter to remove unknown VEI
+volcanoes_500_705 <- volcanoes_500_705 %>% drop_na(vei)
+```
+
+```{r}
+# plot the VEI of the volcanoes arupting by year
+ggplot(volcanoes_500_705) +
+    geom_point(aes(x=start_year,y=vei), colour = "red") 
+```
 
 
