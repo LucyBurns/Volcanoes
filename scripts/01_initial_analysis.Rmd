@@ -29,6 +29,7 @@ sulfur <- read_csv(here("data/clean_data/sulfur.csv"))
 tree_rings <- read_csv(here("data/clean_data/tree_rings.csv"))
 volcanoes <- read_csv(here("data/clean_data/volcanoes.csv"))
 vei_scale <- read_csv(here("data/clean_data/vei_scale.csv"))
+volcano_deaths <- read_csv(here("data/clean_data/volcano_deaths.csv"))
 ```
 
 # Split the volcanoes by VEI
@@ -222,13 +223,22 @@ vei_0_7 %>%
 ```
 
 ```{r}
-ggplot(sulfur, aes(x=year)) +
+ggplot(sulfur, aes(x=date)) +
     geom_line( aes(y=neem), colour = "red") +  
-    geom_line( aes(y=wdc), colour = "blue") 
+    geom_line( aes(y=wdc), colour = "blue") +
+    geom_point(volcanoes_500_705,mapping = aes(x=start_year,y=vei), colour = "red") 
+  
 ```
 
 ```{r}
-# Find eruptions between 500 and 706
+#Convert sulfur dates
+sulfur <- sulfur %>% 
+  mutate(date = date_decimal(year))
+```
+
+
+```{r}
+# Find eruptions between 500 and 705
 volcanoes_500_705 <- eruptions %>% 
   filter(between(start_year, 500, 705))
 ```
@@ -243,5 +253,13 @@ volcanoes_500_705 <- volcanoes_500_705 %>% drop_na(vei)
 ggplot(volcanoes_500_705) +
     geom_point(aes(x=start_year,y=vei), colour = "red") 
 ```
+
+
+```{r}
+ggplot(tree_rings, aes(x=year)) +
+    geom_line( aes(y=n_tree), colour = "brown1") +  
+    geom_line( aes(y=europe_temp_index), colour = "cadetblue1") 
+```
+
 
 

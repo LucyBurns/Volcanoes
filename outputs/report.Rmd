@@ -280,6 +280,26 @@ If we assume that a volcano eruption will be at least the same as the previous e
 
 Returning to the volcano database we need to build it for the population analysis. What we need is the volcano details, removing those where there is no eruption details. Then we need to determine the year of the last eruption, how many eruptions have their been and what is the average VEI for each volcano.
 
+> At present, about 800 million people live within 100 km of an active volcano - a distance well within reach of potentially lethal volcanic hazards. Of these, about 200 million are in Indonesia. Source: <https://www.bbc.co.uk/news/world-us-canada-44212666>
+
+> Every year about 60 volcanoes erupt. Some take us by surprise but others are regular offenders.
+>
+> Since the year 1500, about 280,000 people have been killed by volcanoes - 170,000 of those by just six eruptions.
+>
+> We have compiled [**these figures**](http://globalvolcanomodel.org/volcanic-fatalities/) using media reports, public records and historical documents.
+>
+> About 2,000 people have been killed since the year 2000.
+>
+> Most people killed by volcanoes are the victims of pyroclastic flows and lahars - volcanic mudflows, packed with debris - which have been responsible for about 120,000 deaths over the last 500 years.
+>
+> These are normally associated with large conical volcanoes found at tectonic boundaries, such as the ring of fire, unlike the gently sloping shield volcanoes, like Kilauea.
+>
+> Pyroclastic flows are very fast avalanches of rock, ash and gas, which can reach temperatures of 700C.
+>
+> They destroy everything in their path, and death is near certain for anyone caught in their way.
+>
+> It was pyroclastic flows that destroyed the Roman city of Pompeii in AD 79. And they claimed nearly 30,000 lives on the Caribbean island of Martinique in 1902.
+
 ## Initial Analysis
 
 Prompted by importing the datasets what analysis is needed?

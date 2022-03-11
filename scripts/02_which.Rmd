@@ -3,4 +3,30 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+```{r}
+library(tidyverse)
+```
+
+Which volcanoes are likely to cause the most damage if they blow?
+
+```{r}
+# Number of deaths already known
+volcano_deaths <- left_join(volcano_deaths, volcanoes, by = "volcano_name")
+```
+
+```{r}
+volcano_deaths <- volcano_deaths %>% 
+  drop_na(volcano_number)
+```
+
+```{r}
+volcano_deaths = 
+  select(volcano_deaths, -country.y)
+```
+
+```{r}
+volcano_deaths = 
+  rename(volcano_deaths, country = country.x)
+```
+
 

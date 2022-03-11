@@ -23,6 +23,7 @@ raw_sulfur <- read_csv(here("data", "raw_data", "sulfur.csv"))
 raw_tree_rings <- read_csv(here("data", "raw_data", "tree_rings.csv"))
 raw_volcano <- read_csv(here("data", "raw_data", "volcano.csv"))
 vei_scale <- read_csv(here("data", "raw_data", "vei_scale.csv"))
+volcano_deaths <- read_csv(here("data", "raw_data", "volcano_deaths.csv"))
 ```
 
 ## Eruption Dataset
@@ -179,6 +180,21 @@ The second column looks corrupted - so I shall remove it.
 vei_scale = subset(vei_scale, select = -c(ejecta_volume_bulk) )
 ```
 
+## Volcano Deaths
+```{r}
+glimpse(volcano_deaths)
+```
+
+```{r}
+# Clean column names
+volcano_deaths<- clean_names(volcano_deaths)
+```
+
+```{r}
+volcano_deaths = 
+rename(volcano_deaths, volcano_name = volcano)
+```
+
 
 # Export clean datasets
 
@@ -191,6 +207,7 @@ write_csv(sulfur, here("data", "clean_data", "sulfur.csv"))
 write_csv(tree_rings, here("data", "clean_data", "tree_rings.csv"))
 write_csv(volcanoes, here("data", "clean_data", "volcanoes.csv"))
 write_csv(vei_scale, here("data", "clean_data", "vei_scale.csv"))
+write_csv(volcano_deaths, here("data", "clean_data", "volcano_deaths.csv"))
 ```
 
 

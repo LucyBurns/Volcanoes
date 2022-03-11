@@ -216,8 +216,52 @@ pre code {
 
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Which volcanoes are likely to cause the most damage if they blow?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBOdW1iZXIgb2YgZGVhdGhzIGFscmVhZHkga25vd25cblxuICBcbiAgXG4gIFxudm9sY2Fub19kZWF0aHMgPC0gbGVmdF9qb2luKHZvbGNhbm9fZGVhdGhzLCB2b2xjYW5vZXMsIGJ5ID0gXCJ2b2xjYW5vX25hbWVcIilcbmBgYCJ9 -->
+<pre class="r"><code># Number of deaths already known
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCg==</div>
+  
+  
+  
+volcano_deaths &lt;- left_join(volcano_deaths, volcanoes, by = &quot;volcano_name&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudm9sY2Fub19kZWF0aHMgPC0gdm9sY2Fub19kZWF0aHMgJT4lIFxuICBkcm9wX25hKHZvbGNhbm9fbnVtYmVyKVxuYGBgIn0= -->
+<pre class="r"><code>volcano_deaths &lt;- volcano_deaths %&gt;% 
+  drop_na(volcano_number)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudm9sY2Fub19kZWF0aHMgPSBcbiAgc2VsZWN0KHZvbGNhbm9fZGVhdGhzLCAtY291bnRyeS55KVxuYGBgIn0= -->
+<pre class="r"><code>volcano_deaths = 
+  select(volcano_deaths, -country.y)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudm9sY2Fub19kZWF0aHMgPSBcbiAgcmVuYW1lKHZvbGNhbm9fZGVhdGhzLCBjb3VudHJ5ID0gY291bnRyeS54KVxuYGBgIn0= -->
+<pre class="r"><code>volcano_deaths = 
+  rename(volcano_deaths, country = country.x)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpgYGAKCldoaWNoIHZvbGNhbm9lcyBhcmUgbGlrZWx5IHRvIGNhdXNlIHRoZSBtb3N0IGRhbWFnZSBpZiB0aGV5IGJsb3c/CgpgYGB7cn0KIyBOdW1iZXIgb2YgZGVhdGhzIGFscmVhZHkga25vd24Kdm9sY2Fub19kZWF0aHMgPC0gbGVmdF9qb2luKHZvbGNhbm9fZGVhdGhzLCB2b2xjYW5vZXMsIGJ5ID0gInZvbGNhbm9fbmFtZSIpCmBgYAoKYGBge3J9CnZvbGNhbm9fZGVhdGhzIDwtIHZvbGNhbm9fZGVhdGhzICU+JSAKICBkcm9wX25hKHZvbGNhbm9fbnVtYmVyKQpgYGAKCmBgYHtyfQp2b2xjYW5vX2RlYXRocyA9IAogIHNlbGVjdCh2b2xjYW5vX2RlYXRocywgLWNvdW50cnkueSkKYGBgCgpgYGB7cn0Kdm9sY2Fub19kZWF0aHMgPSAKICByZW5hbWUodm9sY2Fub19kZWF0aHMsIGNvdW50cnkgPSBjb3VudHJ5LngpCmBgYAoKCg==</div>
 
 
 
