@@ -20,6 +20,8 @@ output:
 >
 > Wikipedia
 
+------------------------------------------------------------------------
+
 # Questions
 
 We all know what a volcano is but how doe we really understand about them? Using datasets originally created as part of Tidy Tuesday (A weekly data project aimed at the R ecosystem) I want to learn more about them focusing on three questions:
@@ -29,6 +31,8 @@ We all know what a volcano is but how doe we really understand about them? Using
 2\. Which volcanoes are likely to cause the most damage if they blow?
 
 3\. Why do people live near volcanoes when they are so lethal?
+
+------------------------------------------------------------------------
 
 # Data
 
@@ -212,25 +216,25 @@ Volcanic Explosivity Index
 
 9 rows, 7 variables
 
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| Name                    | Description                         | Data Type       | Action                            |
-+=========================+=====================================+=================+===================================+
-| vei                     | VEI number                          | Numeric         | Change to function for analysis   |
-|                         |                                     |                 |                                   |
-|                         | (Volcanic Explosivity Index)        |                 |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| classification          | classification name                 | character       |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| description             | description of effect               | character       |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| plume                   | size/scale of plume                 | character       |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| frequency               | frequency                           | character       |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| tropospheric injection  | effect on the troposphere           | character       |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
-| stratospheric injection | effect on the stratosphere          | character       |                                   |
-+-------------------------+-------------------------------------+-----------------+-----------------------------------+
++-------------------------+------------------------------+--------------+---------------------------------+
+| Name                    | Description                  | Data Type    | Action                          |
++=========================+==============================+==============+=================================+
+| vei                     | VEI number                   | Numeric      | Change to function for analysis |
+|                         |                              |              |                                 |
+|                         | (Volcanic Explosivity Index) |              |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| classification          | classification name          | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| description             | description of effect        | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| plume                   | size/scale of plume          | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| frequency               | frequency                    | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| tropospheric injection  | effect on the troposphere    | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| stratospheric injection | effect on the stratosphere   | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
 
 ## Data formats
 
@@ -250,11 +254,23 @@ I can't think of any reason why there would be intentional bias in the data apar
 
 Perhaps one consideration could be that volcanoes erupting underwater or in less populates areas would have less data and analysis done on them.
 
+------------------------------------------------------------------------
+
 # Ethics
 
 The only ethical considerations on the datasets is to consider the local populations living near volcanoes. I do intend to consider the reasons behind people living in close proximity to volcanoes and perhaps there will be some ethical considerations to make at that point. The majority of the data relates to the physical makeup of the volcanoes.
 
+------------------------------------------------------------------------
+
 # Analysis
+
+## Question One:  Where are volcanic eruptions likely to occur
+
+![Location of volcanoes](images/q1_volc_locations.png)
+
+## Question Two:  Which volcanoes are likely to cause the most damage if they blow?
+
+## Question Three: Why do people live near volcanoes when they are so lethal?
 
 ## Explaining the VEI
 

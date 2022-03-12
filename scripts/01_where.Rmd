@@ -11,35 +11,18 @@ library(ggplot2)
 library(gapminder)
 library(lubridate)
 library(here)
-library(hrbrthemes)
-library(viridis)
-library(RColorBrewer)
 library(sf)
 library(rnaturalearth)
-library(rnaturalearthdata)
-library(rgeos)
-library(geojsonio)
-library(rgdal)
-```
 
-# Import Datasets
-```{r}
-eruptions <- read_csv(here("data/clean_data/eruptions.csv"))
-commented_events <- read_csv(here("data/clean_data/commented_events.csv"))
-events <- read_csv(here("data/clean_data/events.csv"))
-sulfur <- read_csv(here("data/clean_data/sulfur.csv"))
-tree_rings <- read_csv(here("data/clean_data/tree_rings.csv"))
-volcanoes <- read_csv(here("data/clean_data/volcanoes.csv"))
-vei_scale <- read_csv(here("data/clean_data/vei_scale.csv"))
-```
-
-```{r}
-volcanoes <- volcanoes %>% 
-  mutate_at(
-    vars(
-        longitude, latitude),
-    as.numeric
-    ) 
+# library(rnaturalearthdata)
+# library(rgeos)
+# library(geojsonio)
+# library(rgdal)
+# library(ggmap)
+# library(dplyr)
+# library(hrbrthemes)
+# library(viridis)
+# library(RColorBrewer)
 ```
 
 ```{r}
@@ -49,25 +32,30 @@ class(world)
 
 ```{r}
 ggplot(data = world) +
-    geom_sf(color = "black", fill = "lightgrey") +
-    xlab("Longitude") + ylab("Latitude") +
-    ggtitle("World map")+
-      geom_point(
-        data = eruption_count,
-        colour = "firebrick",
-        aes(longitude, latitude)
+  geom_sf(data = tectonic_plates,
+          colour = "slateblue4") +
+  geom_sf(color = "gray68", fill = "ivory") +
+  ggtitle("Location of Volcanoes",
+          subtitle = "(and the tectonic plates)")+
+  geom_point(
+     data = volcanoes,
+     colour = "firebrick4",
+     shape = 24,
+     fill = "firebrick4",
+     size =1, 
+     aes(longitude, latitude)
       ) 
 ```
-
 It is clear that volcanoes are located along the edges of the tectonic plates.
 
 What other factors affect the location of active volcanoes?
 
 ```{r}
-vei_0_7 %>% 
+# NUmber of eruptions by year and elevation
+eruptions_vei %>% 
 ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
-    geom_point(size=2, alpha = 0.3) +
-    scale_colour_manual(values =  c("0" = "cornsilk", "1" = "gold1", "2" = "darkgoldenrod2",
+    geom_point(size=1.5, alpha = 0.35) +
+    scale_colour_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
           "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
           "7" = "black")) +
     labs(
@@ -77,87 +65,59 @@ ggplot(aes(x=start_year, y=elevation, colour=vei)) +
       subtitle = "Using VEI scale"
       ) +
     theme(panel.background = element_rect(fill = "black"))
-
-
 ```
 
-What are those straight lines that are occuring? Perhaps some volcanoes are repeatedly erupting? Let's have a look.
 
 ```{r}
-eruption_count <- vei_0_7 %>% 
-  group_by(volcano_number) %>% 
-  summarise(e_count=n()) %>% 
-  arrange(desc(e_count))
+# Number of eruptions by year and elevation
+volcanoes %>%
+  ggplot( aes(x=primary_volcano_type, y=elevation, fill=primary_volcano_type)) +
+    geom_boxplot(varwidth = TRUE, alpha=0.4) +
+    scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+    geom_jitter(color="firebrick", size=0.4, alpha=0.6, shape = 24) +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("Elevation of volcanoes - grouped by primary volcano type") +
+    labs(x = "Primary Volcano Type", y = "Elevation") +
+    theme(plot.title = element_text(vjust = 0.5, hjust=0.3, size = 15),
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.3, size = 10),
+        axis.text.y = element_text(vjust = 0.5, hjust=0.3, size = 10))
 ```
 
-```{r}
-# Add in the volcano information to the eruption counts
-eruption_count <- left_join(eruption_count, volcanoes, by = "volcano_number")
-```
-
-```{r}
-count_of_counts <- eruption_count %>% 
-  group_by(e_count) %>% 
-  summarise(no_volc =n())
-```
-
+What are those straight lines that are occurring? Perhaps some volcanoes are repeatedly erupting? Let's have a look.
 ```{r}
 count_of_counts %>% 
-ggplot(aes(x=e_count, y=no_volc)) + 
-    geom_point(size=2) +
+ggplot(aes(x=e_count, y= no_volc)) + 
+    geom_line(size=1, colour ="firebrick") +
     labs(
       x = "Number of times a volcano has erupted",
       y = "Count of Volcanoes",
       title = "How many times does a volcano erupt?"
       ) 
 ```
+The majority of volcanoes erupt rarely (from what we know)
+- 27% have only erupted once 
+- 72% 10 or fewer eruptions
+- 83% 20 or fewer
 
-Where are the most frequently erupting volcanoes located?
-
-```{r}
-world <- ne_countries(scale = "medium", returnclass = "sf")
-class(world)
-  ggplot(data = world) +
-      geom_sf(color = "black", fill = "lightgrey") +
-      xlab("Longitude") + 
-      ylab("Latitude") +
-      ggtitle("World map") +
-  geom_point(
-        data = eruption_count,
-        aes(x = longitude, 
-            y = latitude,
-            colour = e_count)       ) 
-```
-
-Can we look at which volcanoes have been active recently - so number of eruptions and recency of eruptions.
+But there are some volcanoes that we know erupt a lot.
+8 of the volcanoes have known to have erupted at least 100 times.
 
 ```{r}
-# Drop NAs from eruption count table
-eruption_count <- eruption_count %>% drop_na(last_eruption_year)
+ggplot(data = world) +
+  geom_sf(data = tectonic_plates,
+          colour = "slateblue4") +
+  geom_sf(color = "gray68", fill = "ivory") +
+  ggtitle("Location of Volcanoes which have knowingly erupted over 100 times") +
+  geom_jitter(
+     data = volcanoes_over_100,
+     colour = "firebrick4",
+     shape = 24,
+     fill = "firebrick4",
+     size =3, 
+     aes(longitude, latitude)
+      ) 
 ```
-
-```{r}
-# Drop Unknowns from eruption count table
-eruption_count <- eruption_count %>% 
-  filter(last_eruption_year != "Unknown")
-```
-
-```{r}
-# Convert the last eruption year to numeric
-eruption_count$last_eruption_year <- 
-  as.numeric(as.character(eruption_count$last_eruption_year))
-```
-
-```{r}
-# Create new column showing years since last eruption
-eruption_count <- eruption_count %>% 
-  mutate(years_since = 2020 - last_eruption_year)
-```
-
-```{r}
-eruption_count %>% 
-  ggplot(aes(x=years_since, y=e_count, color = tectonic_zone)) +
-    geom_point(size = 4) 
-```
-
-

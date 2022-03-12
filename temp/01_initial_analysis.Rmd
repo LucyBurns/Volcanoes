@@ -17,6 +17,8 @@ library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
 library(rgeos)
+library(hrbrthemes)
+library(viridis)
 ```
 
 # Import Datasets
@@ -67,12 +69,12 @@ rename(eruptions_volc, longitude = longitude.x)
 
 ```{r}
 # Create dataset with just recorded vei values
-vei_0_7 <- eruptions_volc %>% drop_na(vei)
+eruptions_vei <- eruptions_volc %>% drop_na(vei)
 ```
 
 ```{r}
 # Count number of eruptions by VEI
-count_vei <- vei_0_7 %>% 
+count_vei <- eruptions_vei %>% 
   group_by(vei) %>% 
   summarise(count = n())
 count_vei
@@ -80,12 +82,12 @@ count_vei
 
 ```{r}
 # change the VEI to a factor
-vei_0_7 <- vei_0_7 %>% 
+eruptions_vei <- eruptions_vei %>% 
   mutate(vei = as.factor(vei))
 ```
 
 ```{r}
-ggplot(vei_0_7, aes(x=vei, fill = vei)) +  
+ggplot(eruptions_vei, aes(x=vei, fill = vei)) +  
   geom_bar( ) +
   scale_fill_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
           "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
@@ -97,22 +99,7 @@ ggplot(vei_0_7, aes(x=vei, fill = vei)) +
       ) 
 ```
 
-```{r}
-vei_0_7 %>% 
-ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
-    geom_point(size=2) +
-    scale_colour_manual(values =  c("0" = "cornsilk", "1" = "gold1", "2" = "darkgoldenrod2",
-          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
-          "7" = "black")) +
-    labs(
-      x = "Year of eruption",
-      y = "Elevation (metres)",
-      title = "Number of Eruptions by Year and Elevation",
-      subtitle = "Using VEI scale"
-      ) 
 
-
-```
 
 But what is going on here - it looks like some volcanoes are erupting many times.
 
@@ -260,6 +247,54 @@ ggplot(tree_rings, aes(x=year)) +
     geom_line( aes(y=n_tree), colour = "brown1") +  
     geom_line( aes(y=europe_temp_index), colour = "cadetblue1") 
 ```
+
+```{r}
+# tidy primary volcano type in volcanoes table
+volcanoes <- volcanoes %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava cone(es)", "Lava cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava cone(s)", "Lava cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava cone(es)", "Lava cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Caldera(s)", "Caldera")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava dome(s)", "Lava dome")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Pyroclastic cone(s)", "Pyroclastic cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Shield(s)", "Shield")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Stratovolcano?", "Stratovolcano")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Stratovolcano(es)", "Stratovolcano")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Tuff cone(s)", "Tuff cone")) %>% 
+    mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Complex(es)", "Complex")) 
+```
+
+```{r}
+volcanoes %>% 
+  group_by(primary_volcano_type) %>% 
+  summarise(count = n())
+```
+
+
+
+
 
 
 

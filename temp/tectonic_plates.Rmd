@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(ggmap)
+library(dplyr)
+library(ggplot2)
+library(here)
+library(tidyverse)
+library(sf)
+```
+
+```{r}
+ data <- read_csv(here("data/clean_data/volcanoes.csv"))
+```
+```{r}
+st_read("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json") -> plates
+```
+
+
+```{r}
+## Loading required package: ggplot2
+ggplot(data = data) +
+  geom_sf(data = plates)+
+  borders("world", colour="gray50", fill="gray50") +
+  geom_point(aes(x=longitude, y=latitude), alpha = 0.1, color="red", size=0.5)
+
+```
+
+
+
