@@ -21,174 +21,16 @@ library(hrbrthemes)
 library(viridis)
 ```
 
-# Import Datasets
-
-```{r}
-eruptions <- read_csv(here("data/clean_data/eruptions.csv"))
-commented_events <- read_csv(here("data/clean_data/commented_events.csv"))
-events <- read_csv(here("data/clean_data/events.csv"))
-sulfur <- read_csv(here("data/clean_data/sulfur.csv"))
-tree_rings <- read_csv(here("data/clean_data/tree_rings.csv"))
-volcanoes <- read_csv(here("data/clean_data/volcanoes.csv"))
-vei_scale <- read_csv(here("data/clean_data/vei_scale.csv"))
-volcano_deaths <- read_csv(here("data/clean_data/volcano_deaths.csv"))
-```
-
-# Split the volcanoes by VEI
-
-```{r}
-# Count number of eruptions by VEI
-eruptions %>% 
-  group_by(vei) %>% 
-  summarise(count = n())
-```
-
-```{r}
-# Add the volcano detail onto the eruption database
-eruptions_volc <- left_join(eruptions, volcanoes, by = "volcano_name")
-```
-
-```{r}
-# Remove duplicate columns
-eruptions_volc = 
-  select(eruptions_volc, -volcano_number.y, -latitude.y, -longitude.y)
-```
-
-```{r}
-# Rename columns
-eruptions_volc = 
-rename(eruptions_volc, volcano_number = volcano_number.x)
-
-eruptions_volc = 
-rename(eruptions_volc, latitude = latitude.x)
-
-eruptions_volc = 
-rename(eruptions_volc, longitude = longitude.x)
-
-```
-
-```{r}
-# Create dataset with just recorded vei values
-eruptions_vei <- eruptions_volc %>% drop_na(vei)
-```
-
-```{r}
-# Count number of eruptions by VEI
-count_vei <- eruptions_vei %>% 
-  group_by(vei) %>% 
-  summarise(count = n())
-count_vei
-```
-
-```{r}
-# change the VEI to a factor
-eruptions_vei <- eruptions_vei %>% 
-  mutate(vei = as.factor(vei))
-```
-
-```{r}
-ggplot(eruptions_vei, aes(x=vei, fill = vei)) +  
-  geom_bar( ) +
-  scale_fill_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
-          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
-          "7" = "black")) +
-    labs(
-      x = "VEI - Volcanic Explosivity Index",
-      y = "Number of Eruptions",
-      title = "Number of Eruptions by VEI"
-      ) 
-```
 
 
 
-But what is going on here - it looks like some volcanoes are erupting many times.
-
-Let's have a look.
-
-```{r}
-eruption_count <- vei_0_7 %>% 
-  group_by(volcano_number) %>% 
-  summarise(e_count=n()) %>% 
-  arrange(desc(e_count))
-```
-
-```{r}
-# Add in the volcano information to the eruption counts
-eruption_count <- left_join(eruption_count, volcanoes, by = "volcano_number")
-```
-
-```{r}
-count_of_counts <- eruption_count %>% 
-  group_by(e_count) %>% 
-  summarise(no_volc =n())
-```
-
-```{r}
-count_of_counts %>% 
-ggplot(aes(x=e_count, y=no_volc)) + 
-    geom_point(size=2) +
-    labs(
-      x = "Number of times a volcano has erupted",
-      y = "Count of Volcanoes",
-      title = "How many times does a volcano erupt?"
-      ) 
-```
-Where are the  most frequently erupting volcanoes located?
-
-```{r}
-# Produces an interactive map
-eruption_count %>% 
-  filter(e_count > 100) %>% 
-leaflet() %>% 
-    addTiles() %>% 
-    addMarkers(~longitude, ~latitude, 
-             popup = ~as.character(volcano_name), label = ~as.character(volcano_name))
-
-```
-```{r}
-world <- ne_countries(scale = "medium", returnclass = "sf")
-class(world)
-```
-```{r}
-ggplot(data = world) +
-    geom_sf(color = "black", fill = "lightgrey") +
-    xlab("Longitude") + ylab("Latitude") +
-    ggtitle("World map")+
-      geom_point(
-        data = eruption_count,
-        colour = "firebrick",
-        aes(longitude, latitude)
-      ) 
-```
 
 
-```{r}
-ggplot() +
-      geom_map(
-        data = world, map = world,
-        aes(x = long, y = lat, map_id = region),
-        colour ="black", fill = "lightgrey", size = 0.1
-      ) +
-      geom_point(
-        data = eruption_count,
-        aes(longitude, latitude)
-      ) 
-```
 
 
-```{r}
-# Most basic bubble plot
-ggplot(vei_0_7, aes(x=latitude, y=longitude, size = population_within_5_km, colour = vei)) +
-    geom_point(alpha=0.7)
-```
 
 
-```{r}
-vei_0_7 %>% 
-  ggplot(aes(x=vei)) +
-    geom_bar() +
-    facet_wrap(~primary_volcano_type)
-```
+
 
 ```{r}
 vei_0_7 %>% 
@@ -197,11 +39,7 @@ vei_0_7 %>%
     facet_wrap(~region)
 ```
 
-```{r}
-vei_0_7 %>% 
-  ggplot(aes(x=population_within_30_km, y = vei)) +
-    geom_point() 
-```
+
 
 ```{r}
 vei_0_7 %>% 
@@ -248,43 +86,7 @@ ggplot(tree_rings, aes(x=year)) +
     geom_line( aes(y=europe_temp_index), colour = "cadetblue1") 
 ```
 
-```{r}
-# tidy primary volcano type in volcanoes table
-volcanoes <- volcanoes %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Lava cone(es)", "Lava cone")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Lava cone(s)", "Lava cone")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Lava cone(es)", "Lava cone")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Caldera(s)", "Caldera")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Lava dome(s)", "Lava dome")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Pyroclastic cone(s)", "Pyroclastic cone")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Shield(s)", "Shield")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Stratovolcano?", "Stratovolcano")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Stratovolcano(es)", "Stratovolcano")) %>% 
-  mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Tuff cone(s)", "Tuff cone")) %>% 
-    mutate(primary_volcano_type = 
-           replace(primary_volcano_type, 
-                   primary_volcano_type == "Complex(es)", "Complex")) 
-```
+
 
 ```{r}
 volcanoes %>% 

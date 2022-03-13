@@ -91,7 +91,7 @@ What are those straight lines that are occurring? Perhaps some volcanoes are rep
 ```{r}
 count_of_counts %>% 
 ggplot(aes(x=e_count, y= no_volc)) + 
-    geom_line(size=1, colour ="firebrick") +
+    geom_point(size=1, colour ="firebrick") +
     labs(
       x = "Number of times a volcano has erupted",
       y = "Count of Volcanoes",
@@ -102,6 +102,7 @@ The majority of volcanoes erupt rarely (from what we know)
 - 27% have only erupted once 
 - 72% 10 or fewer eruptions
 - 83% 20 or fewer
+- 95% 50 or fewer
 
 But there are some volcanoes that we know erupt a lot.
 8 of the volcanoes have known to have erupted at least 100 times.

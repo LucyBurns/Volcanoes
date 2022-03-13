@@ -34,6 +34,44 @@ volcanoes <- volcanoes %>%
     ) 
 ```
 
+```{r}
+# tidy primary volcano type in volcanoes table
+volcanoes <- volcanoes %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava cone(es)", "Lava cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava cone(s)", "Lava cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava cone(es)", "Lava cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Caldera(s)", "Caldera")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Lava dome(s)", "Lava dome")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Pyroclastic cone(s)", "Pyroclastic cone")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Shield(s)", "Shield")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Stratovolcano?", "Stratovolcano")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Stratovolcano(es)", "Stratovolcano")) %>% 
+  mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Tuff cone(s)", "Tuff cone")) %>% 
+    mutate(primary_volcano_type = 
+           replace(primary_volcano_type, 
+                   primary_volcano_type == "Complex(es)", "Complex")) 
+```
+
 # Manipulate datasets
 ```{r}
 # Count number of eruptions by VEI
@@ -110,9 +148,6 @@ eruption_count <- eruptions_vei %>%
 eruption_count <- left_join(eruption_count, volcanoes, by = "volcano_number")
 ```
 
-
-
-
 ```{r}
 count_of_counts <- eruption_count %>% 
   group_by(e_count) %>% 
@@ -124,8 +159,6 @@ count_of_counts <- eruption_count %>%
 volcanoes_over_100 <- eruption_count %>% 
   filter(e_count > 100)
 ```
-
-
 
 Can we look at which volcanoes have been active recently - so number of eruptions and recency of eruptions.
 
@@ -157,3 +190,85 @@ eruption_count %>%
   ggplot(aes(x=years_since, y=e_count, color = tectonic_zone)) +
     geom_point(size = 4) 
 ```
+
+```{r}
+# Number of deaths already known
+volcano_deaths <- left_join(volcano_deaths, volcanoes, by = "volcano_name")
+```
+
+```{r}
+volcano_deaths <- volcano_deaths %>% 
+  drop_na(volcano_number)
+```
+
+```{r}
+volcano_deaths = 
+  select(volcano_deaths, -country.y)
+```
+
+```{r}
+volcano_deaths = 
+  rename(volcano_deaths, country = country.x)
+```
+
+```{r}
+# Find volcanoes with a known last eruption date
+volc_known_eruption <- volcanoes %>% 
+ filter(last_eruption_year != "Unknown") 
+```
+
+```{r}
+volc_known_eruption <- volc_known_eruption %>% 
+  mutate(last_eruption_year = as.numeric(last_eruption_year))
+```
+
+```{r}
+popn_1mn_plus <- volcanoes %>% 
+  filter(population_within_10_km>1000000) %>% 
+  select("volcano_name", "country", "population_within_10_km", "latitude", "longitude")
+```
+
+```{r}
+# filter the data to Indonesia
+country_indonesia <- world %>%
+  filter(name == "Indonesia")
+```
+
+```{r}
+# Let's find all Indonesian volcanoes
+indonesia_vol <- volcanoes %>% 
+  filter(country == "Indonesia")
+```
+
+```{r}
+# Let's find all Tambora
+tambora <- volcanoes %>% 
+  filter(volcano_name == "Tambora")
+```
+
+
+```{r}
+ggplot(data = world) +
+    geom_sf(aes(fill = pop_est)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+```
+
+
+```{r}
+# Adding the VEI of eruptions onto the death table
+eruptions_vei2 <- eruptions_vei %>% 
+  select(volcano_name, start_year, vei)
+
+
+volcano_deaths <- left_join(volcano_deaths, eruptions_vei2, 
+          by = c("volcano_name" = "volcano_name",
+                 "year" = "start_year"))
+
+```
+
+```{r}
+data<-replace(df$Marks, df$Marks<0, 0)
+
+replace(eruptions_vei$start_year, df$eruption_number==16231, 1815)
+```
+

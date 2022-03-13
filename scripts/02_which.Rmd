@@ -5,28 +5,113 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(ggplot2)
 ```
 
 Which volcanoes are likely to cause the most damage if they blow?
 
 ```{r}
-# Number of deaths already known
-volcano_deaths <- left_join(volcano_deaths, volcanoes, by = "volcano_name")
+volcano_deaths %>% 
+  ggplot(aes(x = year, y = deaths, colour=vei)) +
+  geom_point(size=3.5, 
+             alpha = 1, 
+             shape = 18) +   
+  scale_colour_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black")) +
+  labs(
+      x = "Year of eruption",
+      y = "Number of deaths",
+      title = "Number of Deaths Caused by Volanoes",
+      subtitle = "(Some estimates)"
+      ) +
+    theme(panel.background = element_rect(fill = "slategray2"))
 ```
 
 ```{r}
-volcano_deaths <- volcano_deaths %>% 
-  drop_na(volcano_number)
+volcano_deaths %>% 
+  filter(year>1820) %>% 
+  ggplot(aes(x = year, y = deaths, colour=vei)) +
+  geom_point(size=3.5, 
+             alpha = 1, 
+             shape = 18) +   
+  scale_colour_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black")) +
+  labs(
+      x = "Year of eruption",
+      y = "Number of deaths",
+      title = "Number of Deaths Caused by Volanoes",
+      subtitle = "(after 1820)"
+      ) +
+    theme(panel.background = element_rect(fill = "slategray2"))
+```
+
++--------------------------+--------------+-----------------------------+
+| Volcano Name             | Country      | Population within 10km      |
++:=========================+:=============+:===========================:+
+| Michoacan-Guanajuato     | Mexico       | 5783287                     |
++--------------------------+--------------+-----------------------------+
+| Tatun Volcanic Group     | Taiwan       | 5084149                     |
++--------------------------+--------------+-----------------------------+
+| Campi Flegrei            | Italy        | 2234109                     |
++--------------------------+--------------+-----------------------------+
+| Ilopango                 | El Salvador  | 2049583                     |
++--------------------------+--------------+-----------------------------+
+| Hainan Volcanic Field    | China        | 1731229                     |
++--------------------------+--------------+-----------------------------+
+| San Pablo Volcanic Field | Philippines  | 1349742                     |
++--------------------------+--------------+-----------------------------+
+| Ghegham Volcanic Ridge   | Armenia      | 1265153                     |
++--------------------------+--------------+-----------------------------+
+| Dieng Volcanic Complex   | Indonesia    | 1092929                     |
++--------------------------+--------------+-----------------------------+
+| Auckland Volcanic Field  | New Zealand  | 1049110                     |
++--------------------------+--------------+-----------------------------+
+| Rahat, Harrat            | Saudi Arabia | 1010115                     |
++--------------------------+--------------+-----------------------------+
+
+```{r}
+ggplot(data = world) +
+  geom_sf(data = tectonic_plates,
+          colour = "slateblue4") +
+  geom_sf(color = "gray68", fill = "ivory") +
+  ggtitle("Size of the population within 100km of volanoes",
+          subtitle = "Top 10 highlighted") +
+  geom_point(
+    data = volcanoes,
+    aes(x = longitude, y = latitude, 
+        color = primary_volcano_type,
+        size=population_within_100_km),
+    alpha = 0.5
+  ) +
+    theme(legend.position = "none") +
+  geom_jitter(
+     data = popn_1mn_plus,
+     colour = "firebrick4",
+     shape = 24,
+     fill = "firebrick4",
+     size =2, 
+     aes(longitude, latitude)
+      ) 
 ```
 
 ```{r}
-volcano_deaths = 
-  select(volcano_deaths, -country.y)
+ggplot(data = world) +
+  geom_sf(data = tectonic_plates,
+          colour = "slateblue4") +
+  geom_sf(color = "gray68", fill = "ivory") +
+  ggtitle("VEI of the Last Volcanic Eruptions") +
+  geom_point(
+    data = eruptions_vei,
+    aes(x = longitude, y = latitude, 
+        color = vei,
+        alpha = 0.5)) +
+  scale_colour_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
+          "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
+          "7" = "black")) +
+  guides(alpha = "none")
 ```
 
-```{r}
-volcano_deaths = 
-  rename(volcano_deaths, country = country.x)
-```
 
 
