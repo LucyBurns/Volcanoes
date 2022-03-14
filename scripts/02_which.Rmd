@@ -76,7 +76,7 @@ ggplot(data = world) +
   geom_sf(data = tectonic_plates,
           colour = "slateblue4") +
   geom_sf(color = "gray68", fill = "ivory") +
-  ggtitle("Size of the population within 100km of volanoes",
+  ggtitle("Size of the population within 100km of volcanoes",
           subtitle = "Top 10 highlighted") +
   geom_point(
     data = volcanoes,
