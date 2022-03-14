@@ -13,6 +13,9 @@ library(lubridate)
 library(here)
 library(sf)
 library(rnaturalearth)
+library(viridis)
+library(hrbrthemes)
+library(janitor)
 
 # library(rnaturalearthdata)
 # library(rgeos)
@@ -20,8 +23,6 @@ library(rnaturalearth)
 # library(rgdal)
 # library(ggmap)
 # library(dplyr)
-# library(hrbrthemes)
-# library(viridis)
 # library(RColorBrewer)
 ```
 
@@ -51,9 +52,8 @@ It is clear that volcanoes are located along the edges of the tectonic plates.
 What other factors affect the location of active volcanoes?
 
 ```{r}
-# NUmber of eruptions by year and elevation
-eruptions_vei %>% 
-ggplot(aes(x=start_year, y=elevation, colour=vei)) + 
+# Number of eruptions by year and elevation
+ggplot(eruptions_vei, aes(x=start_year, y=elevation, colour=vei)) + 
     geom_point(size=1.5, alpha = 0.35) +
     scale_colour_manual(values =  c("0" = "khaki", "1" = "gold1", "2" = "darkgoldenrod2",
           "3" = "darkorange2", "4" = "firebrick1", "5" = "firebrick", "6" = "firebrick4",
@@ -65,6 +65,13 @@ ggplot(aes(x=start_year, y=elevation, colour=vei)) +
       subtitle = "Using VEI scale"
       ) +
     theme(panel.background = element_rect(fill = "black"))
+```
+
+```{r}
+# Count eruptions by VEI
+eruptions_vei %>% 
+  group_by(vei) %>% 
+  summarise(count = n())
 ```
 
 
@@ -86,6 +93,12 @@ volcanoes %>%
         axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.3, size = 10),
         axis.text.y = element_text(vjust = 0.5, hjust=0.3, size = 10))
 ```
+
+```{r}
+# How many volcanoes of each type
+tabyl(volcanoes$primary_volcano_type, sort = TRUE)
+```
+
 
 What are those straight lines that are occurring? Perhaps some volcanoes are repeatedly erupting? Let's have a look.
 ```{r}

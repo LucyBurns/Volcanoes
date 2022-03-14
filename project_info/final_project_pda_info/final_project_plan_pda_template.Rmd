@@ -17,9 +17,9 @@ output:
 
 The data you use in the project has to meet the following criteria:
 
-- At least 5,000 rows
-- At least 3 sources of data
-- Must contain text data, numeric data and dates
+-   At least 5,000 rows
+-   At least 3 sources of data
+-   Must contain text data, numeric data and dates
 
 Most of the data supplied with the briefs do meet the requirements, but we recommend that you personally make sure that you are indeed meeting these criteria. If your current datasets do not, you are more than welcome to supplement your analysis with further datasets that would help you meet the requirements.
 
@@ -33,7 +33,7 @@ Please create a project plan/documentation according to the template below:
 
 <br>
 
-::: {.emphasis}
+::: emphasis
 Use this template with associated subheadings to create the documentation to make sure you cover all necessary learning outcomes for the PDA. If you have any questions, just let an instructor know.
 :::
 
@@ -41,11 +41,11 @@ Use this template with associated subheadings to create the documentation to mak
 
 #### Business intelligence and data-driven decision making
 
-What insights can the business/organisation gain from your analysis and how will your analysis help the business/organisation make better decisions? 
+What insights can the business/organisation gain from your analysis and how will your analysis help the business/organisation make better decisions?
 
 #### Domain knowledge and the business context
 
-Briefly describe the business/organisation and where your analysis fits within its aims/activity. 
+Briefly describe the business/organisation and where your analysis fits within its aims/activity.
 
 ## Data
 
@@ -69,7 +69,7 @@ Briefly describe the quality of the data and whether you have any reasons to sug
 
 #### Ethical issues in data sourcing and extraction
 
-Do you have any ethical concerns regarding the sourcing and extraction of your data? 
+Do you have any ethical concerns regarding the sourcing and extraction of your data?
 
 #### Ethical implications of business requirements
 
@@ -87,9 +87,9 @@ What were the main tools you used for your analysis?
 
 #### Descriptive, diagnostic, predictive and prescriptive analysis
 
-Please report under which of the below categories your analysis falls **and why** (can be more than one) 
+Please report under which of the below categories your analysis falls **and why** (can be more than one)
 
-::: {.emphasis}
+::: emphasis
 **Descriptive Analytics** tells you what happened in the past.
 
 **Diagnostic Analytics** helps you understand why something happened in the past.
@@ -98,7 +98,6 @@ Please report under which of the below categories your analysis falls **and why*
 
 **Prescriptive Analytics** recommends actions you can take to affect those outcomes.
 :::
-
 
 # PDA Outcomes
 

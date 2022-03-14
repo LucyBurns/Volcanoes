@@ -50,10 +50,15 @@ sum(is.na(raw_eruptions$area_of_activity))
 
 ```{r}
 # Remove the unnecessary date fields
-eruptions = subset(raw_eruptions, select = c("volcano_number", "volcano_name", "eruption_number",
-                       "eruption_category","vei",
-                       "start_year", "evidence_method_dating", "latitude",
-                       "longitude"))
+eruptions = subset(raw_eruptions, select = c("volcano_number", 
+                                             "volcano_name", 
+                                             "eruption_number",
+                                             "eruption_category",
+                                             "vei",
+                                             "start_year", 
+                                             "evidence_method_dating", 
+                                             "latitude",
+                                             "longitude"))
 ```
 
 ```{r}

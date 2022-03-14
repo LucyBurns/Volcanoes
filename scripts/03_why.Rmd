@@ -41,24 +41,3 @@ ggplot(country_indonesia) +
              fill = "yellow") 
 ```
 
-> The 1815 eruption of Mount Tambora was the most powerful volcanic eruption in recorded human history, with a Volcanic Explosivity Index (VEI) of 7. The eruption ejected 160--213 cubic kilometres of material into the atmosphere. It was the most recent confirmed VEI-7 eruption. (Source: Wikipedia)
-
-The island Sumbawa was shattered. Of the 12,000 inhabitants of the island a mere 26 survived. It is estimated that between 70 and 100,000 people were killed in the explosion.
-
-We know that a VEI-7 eruption can have a vast plume injecting gases into both the troposphere and the stratosphere. The year following Mount Tambora's explosion was known as 'The Year Without a Summer.' Europe's summer temperatures were the coldest on record since 1766. There were northern hemisphere food shortages, there was famine in China, the monsoon season was disrupted causing widespread flooding in the Yangtze valley.
-
-> The long-running Central England temperature record reported the 11th coldest year on records since 1659, as well as the 3rd coldest summer and the coldest July on record. Huge storms and abnormal rainfall with flooding of Europe's major rivers (including the Rhine) are attributed to the event, as is the August frost. As a result of volcanic ash in the atmosphere, Hungary experienced brown snow. Italy's northern and north-central region experienced something similar, with red snow falling throughout the year. (Source: Wikipedia)
-
-> The ash in the atmosphere for several months after the eruption reflected significant amounts of solar radiation, causing unseasonably cool summers that contributed to food shortages. China, Europe, and North America had well-documented below normal temperatures, which devastated their harvests.
-
-> The Tambora event was the largest volcanic eruption in the last millennium. On the U.S. Geological Survey's Volcano Explosivity Index, Tambora scores a seven out of eight. That's ten times bigger than the 1991 Mount Pinatubo eruption and a hundred times more powerful than the 1981 Mount St. Helens blast. (Source: National Geographic)
-
-> And Tambora still looms dangerously large over the people of Indonesia: "More than one million people live within 100 kilometers of Tambora today---and 100,000 live within 30 kilometers," says Cottrell. ([Liz Cottrell](http://mineralsciences.si.edu/staff/pages/cottrell.htm), director of the Smithsonian Institution's Global Volcanism Program.)
-
-Travel companies now offer holidays to Sumbawa:
-
-> You can make the trek up here in two to three days if you're game! The lands of Sumbawa are now fertile, mountainous and diverse, with the great surf breaks along the shores being one of the biggest attractions in this part of [**Indonesia**](https://www.experiencetravelgroup.com/indonesia/). (Source: experiencetravelgroup.com
-
-The Balinese eruption of Mount Agung in 2017 is believed to have cost \$1.47 billion in cancelled travel-related bookings
-
-> Eruptions can be highly destructive. Volcanic events have killed approximately 98,000 people and affected about 5.6 million people worldwide during the twentieth century (Witham, 2005). The most common consequences of volcanic events include loss of life, respiratory illness, and severe economic losses, including destruction or damage to housing, infrastructure, and land. Compared to the excess mortality triggered by other disasters, volcanic fatality counts might appear marginal. However, rare volcanic disasters such as the 2018 twin eruptions of the Volcán de Fuego in Guatemala and of the Anak Krakatau volcano in Indonesia, which together rendered the 2018 death toll from volcanoes higher than that of the previous eighteen years combined (CRED, 2019), are forceful reminders of the threat of volcanic activity. Moreover, more moderate but repeated volcanic hazards continue affecting local populations worldwide. Indeed, there are approximately twenty volcanoes at any given time around the world emitting ongoing eruptions (GVP, 2020). (Source: The economics of volcanoes by Johanna Choumert-Nkolo, Anaïs Lamour and Pascale Phélinas) <https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers20-04/010077634.pdf>

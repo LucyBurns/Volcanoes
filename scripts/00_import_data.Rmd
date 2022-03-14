@@ -5,6 +5,12 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(here)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(ggplot2)
+library(rgeos)
 ```
 
 # Import Datasets
@@ -183,12 +189,7 @@ eruption_count$last_eruption_year <-
 # Create new column showing years since last eruption
 eruption_count <- eruption_count %>% 
   mutate(years_since = 2020 - last_eruption_year)
-```
-
-```{r}
-eruption_count %>% 
-  ggplot(aes(x=years_since, y=e_count, color = tectonic_zone)) +
-    geom_point(size = 4) 
+eruption_count
 ```
 
 ```{r}
@@ -229,10 +230,16 @@ popn_1mn_plus <- volcanoes %>%
 ```
 
 ```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+
+```{r}
 # filter the data to Indonesia
 country_indonesia <- world %>%
   filter(name == "Indonesia")
 ```
+
 
 ```{r}
 # Let's find all Indonesian volcanoes
@@ -266,9 +273,5 @@ volcano_deaths <- left_join(volcano_deaths, eruptions_vei2,
 
 ```
 
-```{r}
-data<-replace(df$Marks, df$Marks<0, 0)
 
-replace(eruptions_vei$start_year, df$eruption_number==16231, 1815)
-```
 
