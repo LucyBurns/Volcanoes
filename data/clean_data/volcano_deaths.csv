@@ -4,13 +4,12 @@ deaths,volcano_name,country,year
 1151,Asamayama,Japan,1783
 326,Banda Api,Indonesia,1861
 477,Bandaisan,Japan,1888
-500,Camiguin,Philippines,1951
+500,Camiguin,Philippines,1948
 1900,"Chichon, El",Mexico,1982
 1000,Cotopaxi,Ecuador,1877
 106,Dubbi,Eritrea,1861
 56,Etna,Italy,1843
 9,Etna,Italy,1979
-190,Fuego,Guatemala,2018
 9,Galeras,Colombia,1993
 18,Galunggung,Indonesia,1982
 4011,Galunggung,Indonesia,1822
@@ -20,53 +19,48 @@ deaths,volcano_name,country,year
 10000,Kelut,Indonesia,1586
 5000,Kelut,Indonesia,1919
 400,Kilauea,Hawai'i,1790
-31,Kita-Bayonnaise,Japan,1952
+31,Myojinsho,Japan,1952
 426,Krakatau,Indonesia,2018
 36000,Krakatau,Indonesia,1883
 1369,Marapi,Indonesia,1930
-353,Marapi,Indonesia,2010
-32,Nyiragongo,Democratic Republic of the Congo,2021
+353,Marapi,Indonesia,2011
 245,Nyiragongo,Democratic Republic of the Congo,2002
 70,Nyiragongo,Democratic Republic of the Congo,1977
 63,Ontakesan,Japan,2014
 2033,Oshima-Oshima,Japan,1741
-3,Pacaya,Guatemala,2010
+3,Pacaya,Guatemala,2013
 2957,Papandayan,Indonesia,1772
 30000,Pelee,Martinique,1902
 847,Pinatubo,Philippines,1991
 1,Raoul Island,New Zealand,2006
-416,Raung,Indonesia,1871
+416,Raung,Indonesia,1864
 15000,Rinjani,Indonesia,1257
-151,Ruapehu,New Zealand,1953
+151,Ruapehu,New Zealand,1952
 23000,"Ruiz, Nevado del",Colombia,1985
 1000,"Ruiz, Nevado del",Colombia,1845
 600,"Ruiz, Nevado del",Colombia,1595
 6000,Santa Maria,Guatemala,1902
 70,Santorini,Greece,1650
-20000,Santorini,Greece,-1600
-57,Semeru,Indonesia,2021
-16,Sinabung,Indonesia,2014
-19,Soufriere Hills,Montserrat,1997
+20000,Santorini,Greece,-1610
+16,Sinabung,Indonesia,2013
+19,Soufriere Hills,Montserrat,1995
 1680,Soufriere St. Vincent,St. Vincent,1902
 57,St. Helens,United States,1980
-4,Stromboli,Italy,1930
-1,Stromboli,Italy,2019
-39,Taal,Philippines,2020
+4,Stromboli,Italy,1932
 1300,Taal,Philippines,1911
 4,"Tair, Jebel at",Yemen,2007
-100000,Tambora,Indonesia,1815
-2806,Tangkoko-Duasudara,Indonesia,1856
-1532,Tangkoko-Duasudara,Indonesia,1892
+100000,Tambora,Indonesia,1812
+2806,Tangkoko-Duasudara,Indonesia,1843
+1532,Tangkoko-Duasudara,Indonesia,1880
 2,Tengger Caldera,Indonesia,2004
-144,Tokachidake,Japan,1926
-150,Toshima,Japan,1902
-3000,Umboi,Papua New Guinea,1888
+144,Tokachidake,Japan,1925
+150,Izu-Torishima,Japan,1902
+3000,Rabaul,Papua New Guinea,1878
 15000,Unzendake,Japan,1792
-43,Unzendake,Japan,1991
+43,Unzendake,Japan,1990
 1,Vestmannaeyjar,Iceland,1973
 13000,Vesuvius,Italy,79
 3360,Vesuvius,Italy,1631
-216,Vesuvius,Italy,1906
-27,Vesuvius,Italy,1944
-22,Whakaari/White Island,NA,2019
-10,Whakaari/White Island,NA,1914
+216,Vesuvius,Italy,1913
+22,Whakaari/White Island,New Zealand,2019
+10,Whakaari/White Island,New Zealand,1914

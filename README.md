@@ -74,7 +74,7 @@ At present, about 800 million people live within 100 km of an active volcano - a
 
 ![](images/vei_scale.png)
 
-Source: [<https://www.turkvolc.com/eruption-size>](https://www.turkvolc.com/eruption-size){.uri}
+Source: [\<https://www.turkvolc.com/eruption-size>](https://www.turkvolc.com/eruption-size){.uri}
 
 ### ![](outputs/images/indonesia.png)
 

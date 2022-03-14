@@ -1,10 +1,10 @@
-vei,classisification,description,plume,frequency,tropospheric_injection,stratospheric_injection
-0,Hawaiian,Effusive,< 100 m,continuous,negligible,none
-1,Hawaiian / Strombolian,Gentle,100 m – 1 km,daily,minor,none
-2,Strombolian / Vulcanian,Explosive,1–5 km,every two weeks,moderate,none
-3,Strombolian / Vulcanian / Peléan / Sub-Plinian,Catastrophic,3–15 km,3 months,substantial,possible
-4,Peléan / Plinian/Sub-Plinian,Cataclysmic,> 10 km (Plinian or sub-Plinian),18 months,substantial,definite
-5,Peléan / Plinian,Paroxysmic,> 10 km (Plinian),12 years,substantial,significant
-6,Plinian / Ultra-Plinian,Colossal,> 20 km,50–100 yrs,substantial,substantial
-7,Ultra-Plinian,Super-colossal,> 20 km,"500–1,000 yrs",substantial,substantial
-8,Ultra-Plinian,Mega-colossal,> 20 km,"> 50,000 yrs",vast,vast
+VEI,Ejecta Volume (Bulk),Classisification,Description,Plume,Frequency,Tropospheric injection,Stratospheric Injection
+0,< 104 m3,Hawaiian,Effusive,< 100 m,continuous,negligible,none
+1,> 104 m3,Hawaiian / Strombolian,Gentle,100 m – 1 km,daily,minor,none
+2,> 106 m3,Strombolian / Vulcanian,Explosive,1–5 km,every two weeks,moderate,none
+3,> 107 m3,Strombolian / Vulcanian / Peléan / Sub-Plinian,Catastrophic,3–15 km,3 months,substantial,possible
+4,> 0.1 km3,Peléan / Plinian/Sub-Plinian,Cataclysmic,> 10 km (Plinian or sub-Plinian),18 months,substantial,definite
+5,> 1 km3,Peléan / Plinian,Paroxysmic,> 10 km (Plinian),12 years,substantial,significant
+6,> 10 km3,Plinian / Ultra-Plinian,Colossal,> 20 km,50–100 yrs,substantial,substantial
+7,> 100 km3,Ultra-Plinian,Super-colossal,> 20 km,"500–1,000 yrs",substantial,substantial
+8,"> 1,000 km3",Ultra-Plinian,Mega-colossal,> 20 km,"> 50,000 yrs",vast,vast

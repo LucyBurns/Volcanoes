@@ -261,17 +261,26 @@ ggplot(data = world) +
 ```
 
 
+
+
 ```{r}
 # Adding the VEI of eruptions onto the death table
 eruptions_vei2 <- eruptions_vei %>% 
   select(volcano_name, start_year, vei)
 
+#drop nas
+eruptions_vei2 <- eruptions_vei2 %>% 
+  drop_na(start_year)
+```
 
+```{r}
 volcano_deaths <- left_join(volcano_deaths, eruptions_vei2, 
           by = c("volcano_name" = "volcano_name",
                  "year" = "start_year"))
 
 ```
+
+
 
 
 
