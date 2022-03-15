@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+glimpse(sulfur)
+```
+
+```{r}
+ggplot(sulfur) +
+  geom_line(aes(x=year, y=neem),
+            color="red", alpha=0.5) + 
+  geom_line(aes(x=year, y=wdc),
+            color="steelblue", alpha=0.5) 
+```
+
+```{r}
+ggplot(tree_rings) +
+  geom_line(aes(x=year, y=n_tree),
+            color="darkviolet", alpha=0.5) + 
+      xlim(500, 720) +
+  geom_line(aes(x=year, y=europe_temp_index),
+            color="darkorange", alpha=0.5) + 
+      xlim(500, 720) +
+  coord_flip()
+```
+

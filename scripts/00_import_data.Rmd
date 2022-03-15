@@ -189,7 +189,7 @@ eruption_count$last_eruption_year <-
 # Create new column showing years since last eruption
 eruption_count <- eruption_count %>% 
   mutate(years_since = 2020 - last_eruption_year)
-eruption_count
+
 ```
 
 ```{r}

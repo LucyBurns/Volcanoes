@@ -73,13 +73,22 @@ volcano_deaths %>%
 +--------------------------+--------------+-----------------------------+
 
 ```{r}
-ggplot(data = world) +
+ggplot() +
   geom_sf(data = tectonic_plates,
           colour = "slateblue4") +
-  geom_sf(color = "gray87", fill = "ivory") +
+  geom_sf(data = world, color = "gray87", fill = "ivory") +
   ggtitle("Size of the population within 100km of volcanoes",
           subtitle = "Top 10 highlighted") +
- # theme(legend.position = "none") +
+ theme(legend.position = "none") +
+  geom_point(
+    data = volcanoes,
+    aes(x = longitude, 
+        y = latitude, 
+        colour = population_within_100_km,
+        size = population_within_100_km),
+    alpha = 0.3
+  ) + 
+  scale_color_distiller(palette = "Spectral") +
   geom_jitter(
      data = popn_1mn_plus,
      colour = "darkgreen",
@@ -87,45 +96,8 @@ ggplot(data = world) +
      fill = "darkgreen",
      size = 2.5 , 
      aes(longitude, latitude)
-      ) +
-  geom_point(
-    data = volcanoes,
-    aes(x = longitude, 
-        y = latitude, 
-        size = population_within_100_km,
-        fill = population_within_100_km),
-    alpha = 0.3
-  ) +
-  scale_fill_gradientn(colours = brewer.pal(7, "YlOrRd")) 
-
-```
-
-```{r}
-ggplot(data = world) +
-  geom_sf(data = tectonic_plates,
-          colour = "slateblue4") +
-  geom_sf(color = "gray68", fill = "ivory") +
-  ggtitle("Size of the population within 100km of volcanoes",
-          subtitle = "Top 10 highlighted") +
-  geom_point(
-    data = volcanoes,
-    aes(x = longitude, y = latitude, 
-        color = tectonic_zone,
-        size=population_within_100_km),
-    alpha = 0.5
-  ) +
-  theme(legend.position = "none") +
-  geom_jitter(
-     data = popn_1mn_plus,
-     colour = "firebrick4",
-     shape = 24,
-     fill = "firebrick4",
-     size =2, 
-     aes(longitude, latitude)
       ) 
 ```
-
-
 
 ```{r}
 ggplot(data = world) +
