@@ -24,13 +24,11 @@ output:
 
 # Questions
 
-We all know what a volcano is but how doe we really understand about them? Using datasets originally created as part of Tidy Tuesday (A weekly data project aimed at the R ecosystem) I want to learn more about them focusing on three questions:
+We all know what a volcano is but how doe we really understand about them? Using datasets originally created as part of Tidy Tuesday (A weekly data project aimed at the R ecosystem) I want to learn more about them focusing on two questions:
 
 1\. Where are volcanic eruptions likely to occur
 
 2\. Which volcanoes are likely to cause the most damage if they blow?
-
-3\. Why do people live near volcanoes when they are so lethal?
 
 ------------------------------------------------------------------------
 
@@ -82,18 +80,29 @@ There is one eruption that has NA for a start year and I am going to drop this o
 
 41322 rows, 10 variables
 
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | Name                | Description        | Data Type | NAs         | Action                                           |
-|---------------------|--------------------|-----------|-------------|--------------------------------------------------|
++=====================+====================+===========+=============+==================================================+
 | volcano number      | volcano unique ID  | numeric   | 0           |                                                  |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | volcano name        | name               | character | 0           |                                                  |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | eruption number     | eruption unique ID | numeric   | 0           |                                                  |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | eruption start year |                    | numeric   | 0           |                                                  |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | event number        |                    | numeric   | 0           |                                                  |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | event type          |                    | character | 0           |                                                  |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | event remarks       |                    | character | 36442 (88%) | Create subset of comments and then remove column |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | event date year     |                    | numeric   | 31315 (76%) | Remove Column                                    |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | event date month    |                    | numeric   | 34190 (83%) | Remove Column                                    |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 | event date day      |                    | numeric   | 35399 (86%) | Remove Column                                    |
++---------------------+--------------------+-----------+-------------+--------------------------------------------------+
 
 #### Cleaning Needed
 
@@ -107,11 +116,15 @@ There is one eruption that has NA for a start year and I am going to drop this o
 
 Data on sulfur detection from melting ice cores (in ng) in Greenland and Antarctica.
 
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----+
 | Name | Description                                                                                                                                                                        | Data Type | NAs |
-|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----|
++======+====================================================================================================================================================================================+===========+=====+
 | year | Year w/ decimal CE                                                                                                                                                                 | numeric   | 290 |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----+
 | neem | Sulfur detected in ng/g from NEEM (North Greenland Eemian Ice Drilling) - ice cores from Greenland, data collected from melting ice cores, data range was 500 to 705 CE            | numeric   | 290 |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----+
 | wdc  | Sulfur detected in ng/g from WDC (West Antarctic Ice Sheet (WAIS) Divide ice core) - ice cores from Antartica, data collected from melting ice cores, data range was 500 to 705 CE | numeric   | 0   |
++------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+-----+
 
 Action: remove all rows where year and neem is NA
 
@@ -119,11 +132,15 @@ Action: remove all rows where year and neem is NA
 
 2252 rows, 3 variables
 
-| Name              | Description                                                                                                                         | Data Type | NAs |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------|-----------|-----|
-| year              | Year of observation                                                                                                                 | numeric   | 252 |
-| n tree            | Tree ring z-scores relative to year = 1000-1099 (a z-score is a measure of variability from the mean - either positive or negative) | numeric   | 252 |
-| europe temp index | Pages 2K Temperature for Europe in Celsius relative to 1961 to 1990                                                                 | numeric   | 252 |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------+-------+
+| Name              | Description                                                                                                                         | Data Type | NAs   |
++===================+=====================================================================================================================================+===========+=======+
+| year              | Year of observation                                                                                                                 | numeric   | 252   |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------+-------+
+| n tree            | Tree ring z-scores relative to year = 1000-1099 (a z-score is a measure of variability from the mean - either positive or negative) | numeric   | 252   |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------+-------+
+| europe temp index | Pages 2K Temperature for Europe in Celsius relative to 1961 to 1990                                                                 | numeric   | 252   |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------+-------+
 
 Action: remove all NA rows
 
@@ -131,34 +148,61 @@ Action: remove all NA rows
 
 958 rows, 26 variables
 
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | Name                 | Description                                                         | Data Type | NAs                 | Action                 |
-|----------------------|---------------------------------------------------------------------|-----------|---------------------|------------------------|
++======================+=====================================================================+===========+=====================+========================+
 | volcano number       | volcano unique ID                                                   | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | volcano name         | volcano name                                                        | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | primary volcano type | volcano type                                                        | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | last eruption year   | Year volcano last erupted                                           | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | country              | country                                                             | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | region               | region                                                              | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | subregion            | subregion                                                           | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | latitude             | latitude                                                            | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | longitude            | longitude                                                           | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | elevation            | elevation                                                           | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | tectonic settings    | Plate tectonic settings (subduction, intraplate, rift zone) + crust | character | 0                   | Split into two columns |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | evidence category    | Type of evidence                                                    | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | major rock 1         | major rock 1                                                        | character | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | major rock 2         | major rock 2                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | major rock 3         | major rock 3                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | major rock 4         | major rock 4                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | major rock 5         | major rock 5                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | minor rock 1         | minor rock 1                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | minor rock 2         | minor rock 2                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | minor rock 3         | minor rock 3                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | minor rock 4         | minor rock 4                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | minor rock 5         | minor rock 5                                                        | character | Some missing values | Remove Column          |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | popn within 5km      | Population within 5km of volcano                                    | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | popn within 10km     | Population within 10km of volcano                                   | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | popn within 30km     | Population within 30km of volcano                                   | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 | popn within 100km    | Population within 100km of volcano                                  | number    | 0                   |                        |
++----------------------+---------------------------------------------------------------------+-----------+---------------------+------------------------+
 
 Split the tectonic settings column into zone and crust and delete the original column.
 
@@ -170,27 +214,25 @@ Volcanic Explosivity Index
 
 9 rows, 7 variables
 
-+-------------------------+------------------------------+-----------+---------------------------------+
-| Name                    | Description                  | Data Type | Action                          |
-+=========================+==============================+===========+=================================+
-| vei                     | VEI number                   | Numeric   | Change to function for analysis |
-|                         |                              |           |                                 |
-|                         | (Volcanic Explosivity Index) |           |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-| classification          | classification name          | character |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-| description             | description of effect        | character |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-| plume                   | size/scale of plume          | character |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-| frequency               | frequency                    | character |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-| tropospheric injection  | effect on the troposphere    | character |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-| stratospheric injection | effect on the stratosphere   | character |                                 |
-+-------------------------+------------------------------+-----------+---------------------------------+
-
-### Volcano Deaths
++-------------------------+------------------------------+--------------+---------------------------------+
+| Name                    | Description                  | Data Type    | Action                          |
++=========================+==============================+==============+=================================+
+| vei                     | VEI number                   | Numeric      | Change to function for analysis |
+|                         |                              |              |                                 |
+|                         | (Volcanic Explosivity Index) |              |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| classification          | classification name          | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| description             | description of effect        | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| plume                   | size/scale of plume          | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| frequency               | frequency                    | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| tropospheric injection  | effect on the troposphere    | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
+| stratospheric injection | effect on the stratosphere   | character    |                                 |
++-------------------------+------------------------------+--------------+---------------------------------+
 
 ## Data formats
 
@@ -214,13 +256,25 @@ Perhaps one consideration could be that volcanoes erupting underwater or in less
 
 # Ethics
 
-The only ethical considerations on the datasets is to consider the local populations living near volcanoes. I do intend to consider the reasons behind people living in close proximity to volcanoes and perhaps there will be some ethical considerations to make at that point. The majority of the data relates to the physical makeup of the volcanoes.
+The only ethical considerations on the datasets is to consider the local populations living near volcanoes. I do intend to consider the reasons behind people living in close proximity to volcanoes and perhaps there will be some ethical considerations to make at that point. The majority of the data relates to the physical make-up of the volcanoes.
 
 ------------------------------------------------------------------------
 
 # Analysis
 
 ## Question One: Where are volcanic eruptions likely to occur?
+
+### Explaining the VEI
+
+VEI is the the Volcanic Explosivity Index and is a measure of how explosive a volcano is.
+
+> With indices running from 0 to 8, the VEI associated with an eruption is dependent on how much volcanic material is thrown out, to what height, and how long the eruption lasts. The scale is logarithmic from VEI-2 and up; an increase of 1 index indicates an eruption that is 10 times as powerful. As such, there is a discontinuity in the definition of the VEI between indices 1 and 2. The lower border of the volume of ejecta jumps by a factor of one hundred, from 10,000 to 1,000,000 m^3^ (350,000 to 35,310,000 cu ft), while the factor is ten between all higher indices. In the following table, the frequency of each VEI indicates the approximate frequency of new eruptions of that VEI or higher.
+
+The scale can be summarised by the following image. The number below the scale value shows how many eruptions have been recorded in each VEI bracket in the last 10,000 years.
+
+![](images/paste-933B5CED.png)
+
+Source: <https://www.turkvolc.com/eruption-size>
 
 ### Geographic Location
 
@@ -328,26 +382,6 @@ At present, about 800 million people live within 100 km of an active volcano - a
 
 ![](images/volcanoes_vei.png)
 
-### Question Three Summary
-
-The biggest impact will be felt on those with a large local population and those which blow with higher VEIs.
-
-------------------------------------------------------------------------
-
-## Question Three: Why do people live near volcanoes when they are so lethal?
-
-### Explaining the VEI
-
-VEI is the the Volcanic Explosivity Index and is a measure of how explosive a volcano is.
-
-> With indices running from 0 to 8, the VEI associated with an eruption is dependent on how much volcanic material is thrown out, to what height, and how long the eruption lasts. The scale is logarithmic from VEI-2 and up; an increase of 1 index indicates an eruption that is 10 times as powerful. As such, there is a discontinuity in the definition of the VEI between indices 1 and 2. The lower border of the volume of ejecta jumps by a factor of one hundred, from 10,000 to 1,000,000 m^3^ (350,000 to 35,310,000 cu ft), while the factor is ten between all higher indices. In the following table, the frequency of each VEI indicates the approximate frequency of new eruptions of that VEI or higher.
-
-The scale can be summarised by the following image. The number below the scale value shows how many eruptions have been recorded in each VEI bracket in the last 10,000 years.
-
-![](images/paste-933B5CED.png)
-
-Source: <https://www.turkvolc.com/eruption-size>
-
 ### Indonesia
 
 ![](images/indonesia.png)
@@ -378,13 +412,31 @@ Paintings of the time showed the colour of the sky as yellow due to the particle
 
 Mary Shelley wrote Frankenstein as she was forced to spend so much time indoors due to the horrific weather.
 
-### Question Three Summary
+### 
+
+### Question Two Summary
+
+The biggest impact will be felt on those with a large local population and those which blow with higher VEIs.
+
+------------------------------------------------------------------------
+
+## 
+
+### Business Outcome
+
+How can businesses use this analysis?
+
+We know that volcanoes are primarily located along the tectonic plates - so the easy answer is don't base your business there. But that is not practical when we have already learned that millions of people live close to volcanoes.
 
 Often people have no choice about where they live. Volcanoes don't always give warning about imminent explosions. Scientists are getting better at predicting eruptions by monitoring the cones and seismic activity.
 
 Volcano tourism has become a thing with travellers wanting to look into the cones and have the experience.
 
 > On 9 December 2019 Whakaari / White Island, an active stratovolcano island in New Zealand's north-eastern Bay of Plenty region explosively erupted. The island was a popular tourist destination, known for its volcanic activity, and 47 people were on the island at the time. Twenty-two people died, either in the explosion or from injuries sustained, including two whose bodies were never found and were later declared dead. A further 25 people suffered injuries, with the majority needing intensive care for severe burns. The ongoing seismic and volcanic activity in the area as well as heavy rainfall, low visibility and toxic gases hampered recovery efforts over the week following the incident. (Wikipedia)
+
+We are a long way off having accurate predictions of imminent eruptions - so perhaps the best advice is to heed the warnings that local vulcanologists and geologists make.
+
+------------------------------------------------------------------------
 
 ## Analysis Stages
 
